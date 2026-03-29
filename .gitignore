@@ -1,0 +1,15 @@
+CLAUDE.md
+CODEX.md
+session-*.md
+TODO.md
+_agents
+.agents
+doc
+meeting
+*.iso
+*.zip
+*.tar.gz
+*.dmg
+*.pkg
+tmp
+*.safetensors

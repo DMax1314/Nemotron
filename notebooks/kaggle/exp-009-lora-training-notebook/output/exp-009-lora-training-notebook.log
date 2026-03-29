@@ -1,0 +1,96 @@
+[{"stream_name":"stderr","time":7.772660646,"data":"0.00s - Debugger warning: It seems that frozen modules are being used, which may\n"}
+,{"stream_name":"stderr","time":7.7727085559999995,"data":"0.00s - make the debugger miss breakpoints. Please pass -Xfrozen_modules=off\n"}
+,{"stream_name":"stderr","time":7.7727103060000005,"data":"0.00s - to python to disable frozen modules.\n"}
+,{"stream_name":"stderr","time":7.772711646,"data":"0.00s - Note: Debugging will proceed. Set PYDEVD_DISABLE_FILE_VALIDATION=1 to disable this validation.\n"}
+,{"stream_name":"stderr","time":8.230177647,"data":"0.00s - Debugger warning: It seems that frozen modules are being used, which may\n"}
+,{"stream_name":"stderr","time":8.230193027,"data":"0.00s - make the debugger miss breakpoints. Please pass -Xfrozen_modules=off\n"}
+,{"stream_name":"stderr","time":8.230194227,"data":"0.00s - to python to disable frozen modules.\n"}
+,{"stream_name":"stderr","time":8.230195247,"data":"0.00s - Note: Debugging will proceed. Set PYDEVD_DISABLE_FILE_VALIDATION=1 to disable this validation.\n"}
+,{"stream_name":"stdout","time":55.889398999,"data":"Utility path candidates:\n"}
+,{"stream_name":"stdout","time":55.889418869,"data":"  - /kaggle/usr/lib/notebooks/ryanholbrook/nvidia_utility_script/nvidia_cutlass_dsl/python_packages\n"}
+,{"stream_name":"stdout","time":55.889420799,"data":"  - /kaggle/usr/lib/notebooks/ryanholbrook/nvidia-utility-script/nvidia_cutlass_dsl/python_packages\n"}
+,{"stream_name":"stdout","time":55.889422179,"data":"  - /kaggle/usr/lib/notebooks/ryanholbrook/nvidia_utility_script/nvidia_cutlass_dsl/python_packages\n"}
+,{"stream_name":"stdout","time":55.889423419,"data":"Added site dir: /kaggle/usr/lib/notebooks/ryanholbrook/nvidia_utility_script/nvidia_cutlass_dsl/python_packages\n"}
+,{"stream_name":"stdout","time":55.889424539,"data":"Resolved utility root: /kaggle/usr/lib/notebooks/ryanholbrook/nvidia_utility_script\n"}
+,{"stream_name":"stdout","time":59.016030643,"data":"Patched Triton PTXAS binaries.\n"}
+,{"stream_name":"stderr","time":110.462655353,"data":"/kaggle/usr/lib/notebooks/ryanholbrook/nvidia_utility_script/torch/compiler/__init__.py:148: FutureWarning: torch._dynamo.allow_in_graph is deprecated and will be removed in a future version. Use torch._dynamo.nonstrict_trace instead.\n"}
+,{"stream_name":"stderr","time":110.462674953,"data":"  return torch._dynamo.allow_in_graph(fn)\n"}
+,{"stream_name":"stderr","time":110.462677043,"data":"\n"}
+,{"stream_name":"stderr","time":110.462678353,"data":"/kaggle/usr/lib/notebooks/ryanholbrook/nvidia_utility_script/torch/compiler/__init__.py:148: FutureWarning: torch._dynamo.allow_in_graph is deprecated and will be removed in a future version. Use torch._dynamo.nonstrict_trace instead.\n"}
+,{"stream_name":"stderr","time":110.462679883,"data":"  return torch._dynamo.allow_in_graph(fn)\n"}
+,{"stream_name":"stdout","time":111.216283817,"data":"Using train.csv: /kaggle/input/competitions/nvidia-nemotron-model-reasoning-challenge/train.csv\n"}
+,{"stream_name":"stdout","time":111.216296657,"data":"Loaded train rows: 9500\n"}
+,{"stream_name":"stdout","time":111.216299977,"data":"Subsampled train rows: 600\n"}
+,{"stream_name":"stdout","time":112.3644288,"data":"Model download root: /kaggle/input/models/metric/nemotron-3-nano-30b-a3b-bf16/transformers/default/1\n"}
+,{"stream_name":"stdout","time":112.3644501,"data":"Resolved model candidates:\n"}
+,{"stream_name":"stdout","time":112.36445223,"data":"  - /kaggle/input/models/metric/nemotron-3-nano-30b-a3b-bf16/transformers/default/1\n"}
+,{"stream_name":"stdout","time":112.36445368,"data":"Resolved model path: /kaggle/input/models/metric/nemotron-3-nano-30b-a3b-bf16/transformers/default/1\n"}
+,{"stream_name":"stderr","time":112.39583035,"data":"`torch_dtype` is deprecated! Use `dtype` instead!\n"}
+,{"stream_name":"stderr","time":112.39584731,"data":"\n"}
+,{"stream_name":"stderr","time":112.39585854,"data":"`torch_dtype` is deprecated! Use `dtype` instead!\n"}
+,{"stream_name":"stdout","time":112.592323229,"data":"Patched rmsnorm_fn in 4 loaded modules.\n"}
+,{"stream_name":"stdout","time":618.628638974,"data":"Patched rmsnorm_fn in 5 loaded modules.\n"}
+,{"stream_name":"stdout","time":618.628659244,"data":"Disabled Nemotron fast path in 1 modules.\n"}
+,{"stream_name":"stdout","time":618.628661464,"data":"Base model loaded.\n"}
+,{"stream_name":"stderr","time":620.039848431,"data":"/usr/local/lib/python3.12/dist-packages/torchao/float8/float8_tensor.py:122: FutureWarning: torch._dynamo.allow_in_graph is deprecated and will be removed in a future version. Use torch._dynamo.nonstrict_trace instead.\n"}
+,{"stream_name":"stderr","time":620.039876461,"data":"  @torch._dynamo.allow_in_graph\n"}
+,{"stream_name":"stderr","time":620.039878031,"data":"/usr/local/lib/python3.12/dist-packages/torchao/float8/float8_tensor.py:195: FutureWarning: torch._dynamo.allow_in_graph is deprecated and will be removed in a future version. Use torch._dynamo.nonstrict_trace instead.\n"}
+,{"stream_name":"stderr","time":620.039879481,"data":"  @torch._dynamo.allow_in_graph\n"}
+,{"stream_name":"stderr","time":620.039880561,"data":"/usr/local/lib/python3.12/dist-packages/torchao/float8/float8_scaling_utils.py:90: FutureWarning: torch._dynamo.allow_in_graph is deprecated and will be removed in a future version. Use torch._dynamo.nonstrict_trace instead.\n"}
+,{"stream_name":"stderr","time":620.039881781,"data":"  @torch._dynamo.allow_in_graph\n"}
+,{"stream_name":"stderr","time":620.039882911,"data":"/usr/local/lib/python3.12/dist-packages/torchao/float8/float8_linear.py:60: FutureWarning: torch._dynamo.allow_in_graph is deprecated and will be removed in a future version. Use torch._dynamo.nonstrict_trace instead.\n"}
+,{"stream_name":"stderr","time":620.039884211,"data":"  @torch._dynamo.allow_in_graph\n"}
+,{"stream_name":"stderr","time":620.039885571,"data":"/usr/local/lib/python3.12/dist-packages/torchao/dtypes/nf4tensor.py:1059: FutureWarning: torch._dynamo.allow_in_graph is deprecated and will be removed in a future version. Use torch._dynamo.nonstrict_trace instead.\n"}
+,{"stream_name":"stderr","time":620.039886781,"data":"  @torch._dynamo.allow_in_graph\n"}
+,{"stream_name":"stderr","time":620.039887901,"data":"/usr/local/lib/python3.12/dist-packages/torchao/quantization/subclass.py:206: FutureWarning: torch._dynamo.allow_in_graph is deprecated and will be removed in a future version. Use torch._dynamo.nonstrict_trace instead.\n"}
+,{"stream_name":"stderr","time":620.039889141,"data":"  @torch._dynamo.allow_in_graph\n"}
+,{"stream_name":"stderr","time":620.039890151,"data":"/usr/local/lib/python3.12/dist-packages/torchao/quantization/subclass.py:355: FutureWarning: torch._dynamo.allow_in_graph is deprecated and will be removed in a future version. Use torch._dynamo.nonstrict_trace instead.\n"}
+,{"stream_name":"stderr","time":620.039891311,"data":"  @torch._dynamo.allow_in_graph\n"}
+,{"stream_name":"stderr","time":620.039892331,"data":"/usr/local/lib/python3.12/dist-packages/torchao/quantization/subclass.py:392: FutureWarning: torch._dynamo.allow_in_graph is deprecated and will be removed in a future version. Use torch._dynamo.nonstrict_trace instead.\n"}
+,{"stream_name":"stderr","time":620.039893491,"data":"  @torch._dynamo.allow_in_graph\n"}
+,{"stream_name":"stderr","time":620.039894561,"data":"\n"}
+,{"stream_name":"stderr","time":620.039895851,"data":"/usr/local/lib/python3.12/dist-packages/torchao/float8/float8_tensor.py:122: FutureWarning: torch._dynamo.allow_in_graph is deprecated and will be removed in a future version. Use torch._dynamo.nonstrict_trace instead.\n"}
+,{"stream_name":"stderr","time":620.039906481,"data":"  @torch._dynamo.allow_in_graph\n"}
+,{"stream_name":"stderr","time":620.039907411,"data":"/usr/local/lib/python3.12/dist-packages/torchao/float8/float8_tensor.py:195: FutureWarning: torch._dynamo.allow_in_graph is deprecated and will be removed in a future version. Use torch._dynamo.nonstrict_trace instead.\n"}
+,{"stream_name":"stderr","time":620.039908331,"data":"  @torch._dynamo.allow_in_graph\n"}
+,{"stream_name":"stderr","time":620.039909091,"data":"/usr/local/lib/python3.12/dist-packages/torchao/float8/float8_scaling_utils.py:90: FutureWarning: torch._dynamo.allow_in_graph is deprecated and will be removed in a future version. Use torch._dynamo.nonstrict_trace instead.\n"}
+,{"stream_name":"stderr","time":620.039910271,"data":"  @torch._dynamo.allow_in_graph\n"}
+,{"stream_name":"stderr","time":620.039911031,"data":"/usr/local/lib/python3.12/dist-packages/torchao/float8/float8_linear.py:60: FutureWarning: torch._dynamo.allow_in_graph is deprecated and will be removed in a future version. Use torch._dynamo.nonstrict_trace instead.\n"}
+,{"stream_name":"stderr","time":620.039911931,"data":"  @torch._dynamo.allow_in_graph\n"}
+,{"stream_name":"stderr","time":620.039912671,"data":"/usr/local/lib/python3.12/dist-packages/torchao/dtypes/nf4tensor.py:1059: FutureWarning: torch._dynamo.allow_in_graph is deprecated and will be removed in a future version. Use torch._dynamo.nonstrict_trace instead.\n"}
+,{"stream_name":"stderr","time":620.039913551,"data":"  @torch._dynamo.allow_in_graph\n"}
+,{"stream_name":"stderr","time":620.039914281,"data":"/usr/local/lib/python3.12/dist-packages/torchao/quantization/subclass.py:206: FutureWarning: torch._dynamo.allow_in_graph is deprecated and will be removed in a future version. Use torch._dynamo.nonstrict_trace instead.\n"}
+,{"stream_name":"stderr","time":620.039915171,"data":"  @torch._dynamo.allow_in_graph\n"}
+,{"stream_name":"stderr","time":620.039915901,"data":"/usr/local/lib/python3.12/dist-packages/torchao/quantization/subclass.py:355: FutureWarning: torch._dynamo.allow_in_graph is deprecated and will be removed in a future version. Use torch._dynamo.nonstrict_trace instead.\n"}
+,{"stream_name":"stderr","time":620.039916781,"data":"  @torch._dynamo.allow_in_graph\n"}
+,{"stream_name":"stderr","time":620.039917511,"data":"/usr/local/lib/python3.12/dist-packages/torchao/quantization/subclass.py:392: FutureWarning: torch._dynamo.allow_in_graph is deprecated and will be removed in a future version. Use torch._dynamo.nonstrict_trace instead.\n"}
+,{"stream_name":"stderr","time":620.039918441,"data":"  @torch._dynamo.allow_in_graph\n"}
+,{"stream_name":"stdout","time":624.472247575,"data":"trainable params: 220,034,560 || all params: 31,797,971,904 || trainable%: 0.6920\n"}
+,{"stream_name":"stdout","time":624.927103644,"data":"Prepared 600 training examples (skipped 0 after truncation/masking).\n"}
+,{"stream_name":"stdout","time":624.927123064,"data":"Starting training: epochs=1, batches=600, grad_accum=4\n"}
+,{"stream_name":"stdout","time":1029.144781897,"data":"epoch=1 step=20 avg_loss=3.3881\n"}
+,{"stream_name":"stdout","time":1427.42003985,"data":"epoch=1 step=40 avg_loss=2.7616\n"}
+,{"stream_name":"stdout","time":1827.963803769,"data":"epoch=1 step=60 avg_loss=2.4343\n"}
+,{"stream_name":"stdout","time":2230.604443049,"data":"epoch=1 step=80 avg_loss=2.2395\n"}
+,{"stream_name":"stdout","time":2632.665979472,"data":"epoch=1 step=100 avg_loss=2.0670\n"}
+,{"stream_name":"stdout","time":3035.85729781,"data":"epoch=1 step=120 avg_loss=1.9391\n"}
+,{"stream_name":"stdout","time":3438.280376718,"data":"epoch=1 step=140 avg_loss=1.8682\n"}
+,{"stream_name":"stdout","time":3638.524595647,"data":"Finished epoch 1: avg_loss=1.8399\n"}
+,{"stream_name":"stdout","time":3638.524622957,"data":"Saving adapter to /kaggle/working/adapter ...\n"}
+,{"stream_name":"stdout","time":3667.443337625,"data":"Zip contents: ['README.md', 'adapter_config.json', 'adapter_model.safetensors']\n"}
+,{"stream_name":"stdout","time":3667.443365255,"data":"Saved training report: /kaggle/working/train_report.json\n"}
+,{"stream_name":"stdout","time":3667.443367375,"data":"Created submission: /kaggle/working/submission.zip\n"}
+,{"stream_name":"stdout","time":3667.689417313,"data":"Done.\n"}
+,{"stream_name":"stderr","time":3671.723699385,"data":"/usr/local/lib/python3.12/dist-packages/mistune.py:435: SyntaxWarning: invalid escape sequence '\\|'\n"}
+,{"stream_name":"stderr","time":3671.723724365,"data":"  cells[i][c] = re.sub('\\\\\\\\\\|', '|', cell)\n"}
+,{"stream_name":"stderr","time":3671.901201913,"data":"/usr/local/lib/python3.12/dist-packages/nbconvert/filters/filter_links.py:36: SyntaxWarning: invalid escape sequence '\\_'\n"}
+,{"stream_name":"stderr","time":3671.901212673,"data":"  text = re.sub(r'_', '\\_', text) # Escape underscores in display text\n"}
+,{"stream_name":"stderr","time":3672.820620867,"data":"/usr/local/lib/python3.12/dist-packages/traitlets/traitlets.py:2915: FutureWarning: --Exporter.preprocessors=[\"remove_papermill_header.RemovePapermillHeader\"] for containers is deprecated in traitlets 5.0. You can pass `--Exporter.preprocessors item` ... multiple times to add items to a list.\n"}
+,{"stream_name":"stderr","time":3672.820637217,"data":"  warn(\n"}
+,{"stream_name":"stderr","time":3672.875926817,"data":"[NbConvertApp] Converting notebook __notebook__.ipynb to notebook\n"}
+,{"stream_name":"stderr","time":3673.012870786,"data":"[NbConvertApp] Writing 37397 bytes to __notebook__.ipynb\n"}
+,{"stream_name":"stderr","time":3674.820978403,"data":"/usr/local/lib/python3.12/dist-packages/traitlets/traitlets.py:2915: FutureWarning: --Exporter.preprocessors=[\"nbconvert.preprocessors.ExtractOutputPreprocessor\"] for containers is deprecated in traitlets 5.0. You can pass `--Exporter.preprocessors item` ... multiple times to add items to a list.\n"}
+,{"stream_name":"stderr","time":3674.820998483,"data":"  warn(\n"}
+,{"stream_name":"stderr","time":3674.842764443,"data":"[NbConvertApp] Converting notebook __notebook__.ipynb to html\n"}
+,{"stream_name":"stderr","time":3675.414226549,"data":"[NbConvertApp] Writing 359516 bytes to __results__.html\n"}
+]

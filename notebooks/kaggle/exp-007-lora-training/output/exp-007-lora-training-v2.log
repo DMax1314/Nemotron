@@ -1,0 +1,74 @@
+[{"stream_name":"stdout","time":42.792234718,"data":"Loading model and tokenizer...\n"}
+,{"stream_name":"stderr","time":42.792442645,"data":"Traceback (most recent call last):\n"}
+,{"stream_name":"stderr","time":42.792469586,"data":"  File \"/usr/local/lib/python3.12/dist-packages/transformers/utils/hub.py\", line 419, in cached_files\n"}
+,{"stream_name":"stderr","time":42.792663741,"data":"    hf_hub_download(\n"}
+,{"stream_name":"stderr","time":42.792674718,"data":"  File \"/usr/local/lib/python3.12/dist-packages/huggingface_hub/utils/_validators.py\", line 85, in _inner_fn\n"}
+,{"stream_name":"stderr","time":42.79279873,"data":"    validate_repo_id(arg_value)\n"}
+,{"stream_name":"stderr","time":42.792814909,"data":"  File \"/usr/local/lib/python3.12/dist-packages/huggingface_hub/utils/_validators.py\", line 129, in validate_repo_id\n"}
+,{"stream_name":"stderr","time":42.792959302,"data":"    raise HFValidationError(\n"}
+,{"stream_name":"stderr","time":42.792966086,"data":"huggingface_hub.errors.HFValidationError: Repo id must be in the form 'repo_name' or 'namespace/repo_name': '/kaggle/input/models/metric/nemotron-3-nano-30b-a3b-bf16/transformers/default/1'. Use `repo_type` argument if needed.\n"}
+,{"stream_name":"stderr","time":42.792983181,"data":"\n"}
+,{"stream_name":"stderr","time":42.792987213,"data":"The above exception was the direct cause of the following exception:\n"}
+,{"stream_name":"stderr","time":42.792991312,"data":"\n"}
+,{"stream_name":"stderr","time":42.792998431,"data":"Traceback (most recent call last):\n"}
+,{"stream_name":"stderr","time":42.793004932,"data":"  File \"/usr/local/lib/python3.12/dist-packages/transformers/models/auto/tokenization_auto.py\", line 617, in from_pretrained\n"}
+,{"stream_name":"stderr","time":42.793239488,"data":"    config = AutoConfig.from_pretrained(\n"}
+,{"stream_name":"stderr","time":42.793258422,"data":"             ^^^^^^^^^^^^^^^^^^^^^^^^^^^\n"}
+,{"stream_name":"stderr","time":42.793272917,"data":"  File \"/usr/local/lib/python3.12/dist-packages/transformers/models/auto/configuration_auto.py\", line 1356, in from_pretrained\n"}
+,{"stream_name":"stderr","time":42.793681001,"data":"    config_dict, unused_kwargs = PreTrainedConfig.get_config_dict(pretrained_model_name_or_path, **kwargs)\n"}
+,{"stream_name":"stderr","time":42.793874675,"data":"                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n"}
+,{"stream_name":"stderr","time":42.793910009,"data":"  File \"/usr/local/lib/python3.12/dist-packages/transformers/configuration_utils.py\", line 569, in get_config_dict\n"}
+,{"stream_name":"stderr","time":42.794183719,"data":"    config_dict, kwargs = cls._get_config_dict(pretrained_model_name_or_path, **kwargs)\n"}
+,{"stream_name":"stderr","time":42.794336899,"data":"                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n"}
+,{"stream_name":"stderr","time":42.794364772,"data":"  File \"/usr/local/lib/python3.12/dist-packages/transformers/configuration_utils.py\", line 624, in _get_config_dict\n"}
+,{"stream_name":"stderr","time":42.794661026,"data":"    resolved_config_file = cached_file(\n"}
+,{"stream_name":"stderr","time":42.794676145,"data":"                           ^^^^^^^^^^^^\n"}
+,{"stream_name":"stderr","time":42.794680543,"data":"  File \"/usr/local/lib/python3.12/dist-packages/transformers/utils/hub.py\", line 276, in cached_file\n"}
+,{"stream_name":"stderr","time":42.794897074,"data":"    file = cached_files(path_or_repo_id=path_or_repo_id, filenames=[filename], **kwargs)\n"}
+,{"stream_name":"stderr","time":42.795084669,"data":"           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n"}
+,{"stream_name":"stderr","time":42.795157283,"data":"  File \"/usr/local/lib/python3.12/dist-packages/transformers/utils/hub.py\", line 468, in cached_files\n"}
+,{"stream_name":"stderr","time":42.795393123,"data":"    raise OSError(f\"{e}\") from e\n"}
+,{"stream_name":"stderr","time":42.795403199,"data":"OSError: Repo id must be in the form 'repo_name' or 'namespace/repo_name': '/kaggle/input/models/metric/nemotron-3-nano-30b-a3b-bf16/transformers/default/1'. Use `repo_type` argument if needed.\n"}
+,{"stream_name":"stderr","time":42.795409779,"data":"\n"}
+,{"stream_name":"stderr","time":42.795413756,"data":"During handling of the above exception, another exception occurred:\n"}
+,{"stream_name":"stderr","time":42.795418019,"data":"\n"}
+,{"stream_name":"stderr","time":42.795422093,"data":"Traceback (most recent call last):\n"}
+,{"stream_name":"stderr","time":42.795426507,"data":"  File \"/usr/local/lib/python3.12/dist-packages/transformers/utils/hub.py\", line 419, in cached_files\n"}
+,{"stream_name":"stderr","time":42.795630157,"data":"    hf_hub_download(\n"}
+,{"stream_name":"stderr","time":42.795643661,"data":"  File \"/usr/local/lib/python3.12/dist-packages/huggingface_hub/utils/_validators.py\", line 85, in _inner_fn\n"}
+,{"stream_name":"stderr","time":42.795738502,"data":"    validate_repo_id(arg_value)\n"}
+,{"stream_name":"stderr","time":42.795745342000004,"data":"  File \"/usr/local/lib/python3.12/dist-packages/huggingface_hub/utils/_validators.py\", line 129, in validate_repo_id\n"}
+,{"stream_name":"stderr","time":42.795919871,"data":"    raise HFValidationError(\n"}
+,{"stream_name":"stderr","time":42.795928635,"data":"huggingface_hub.errors.HFValidationError: Repo id must be in the form 'repo_name' or 'namespace/repo_name': '/kaggle/input/models/metric/nemotron-3-nano-30b-a3b-bf16/transformers/default/1'. Use `repo_type` argument if needed.\n"}
+,{"stream_name":"stderr","time":42.795935029,"data":"\n"}
+,{"stream_name":"stderr","time":42.795939111,"data":"The above exception was the direct cause of the following exception:\n"}
+,{"stream_name":"stderr","time":42.795943056,"data":"\n"}
+,{"stream_name":"stderr","time":42.795946239,"data":"Traceback (most recent call last):\n"}
+,{"stream_name":"stderr","time":42.795949666,"data":"  File \"/kaggle/src/script.py\", line 21, in \u003cmodule\u003e\n"}
+,{"stream_name":"stderr","time":42.796023329,"data":"    tokenizer = AutoTokenizer.from_pretrained(MODEL_PATH, trust_remote_code=True)\n"}
+,{"stream_name":"stderr","time":42.796738051,"data":"                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n"}
+,{"stream_name":"stderr","time":42.796750806,"data":"  File \"/usr/local/lib/python3.12/dist-packages/transformers/models/auto/tokenization_auto.py\", line 621, in from_pretrained\n"}
+,{"stream_name":"stderr","time":42.796755241,"data":"    config = PreTrainedConfig.from_pretrained(pretrained_model_name_or_path, **kwargs)\n"}
+,{"stream_name":"stderr","time":42.796760469,"data":"             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n"}
+,{"stream_name":"stderr","time":42.796765796,"data":"  File \"/usr/local/lib/python3.12/dist-packages/transformers/configuration_utils.py\", line 531, in from_pretrained\n"}
+,{"stream_name":"stderr","time":42.796769545,"data":"    config_dict, kwargs = cls.get_config_dict(pretrained_model_name_or_path, **kwargs)\n"}
+,{"stream_name":"stderr","time":42.796848903,"data":"                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n"}
+,{"stream_name":"stderr","time":42.796938928,"data":"  File \"/usr/local/lib/python3.12/dist-packages/transformers/configuration_utils.py\", line 569, in get_config_dict\n"}
+,{"stream_name":"stderr","time":42.797154237,"data":"    config_dict, kwargs = cls._get_config_dict(pretrained_model_name_or_path, **kwargs)\n"}
+,{"stream_name":"stderr","time":42.797345404,"data":"                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n"}
+,{"stream_name":"stderr","time":42.797354168,"data":"  File \"/usr/local/lib/python3.12/dist-packages/transformers/configuration_utils.py\", line 624, in _get_config_dict\n"}
+,{"stream_name":"stderr","time":42.797558534,"data":"    resolved_config_file = cached_file(\n"}
+,{"stream_name":"stderr","time":42.797583305,"data":"                           ^^^^^^^^^^^^\n"}
+,{"stream_name":"stderr","time":42.797595276,"data":"  File \"/usr/local/lib/python3.12/dist-packages/transformers/utils/hub.py\", line 276, in cached_file\n"}
+,{"stream_name":"stderr","time":42.79777754,"data":"    file = cached_files(path_or_repo_id=path_or_repo_id, filenames=[filename], **kwargs)\n"}
+,{"stream_name":"stderr","time":42.797992958,"data":"           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n"}
+,{"stream_name":"stderr","time":42.798024921,"data":"  File \"/usr/local/lib/python3.12/dist-packages/transformers/utils/hub.py\", line 468, in cached_files\n"}
+,{"stream_name":"stderr","time":42.79825325,"data":"    raise OSError(f\"{e}\") from e\n"}
+,{"stream_name":"stderr","time":42.79826234,"data":"OSError: Repo id must be in the form 'repo_name' or 'namespace/repo_name': '/kaggle/input/models/metric/nemotron-3-nano-30b-a3b-bf16/transformers/default/1'. Use `repo_type` argument if needed.\n"}
+,{"stream_name":"stderr","time":47.093758415,"data":"/usr/local/lib/python3.12/dist-packages/mistune.py:435: SyntaxWarning: invalid escape sequence '\\|'\n"}
+,{"stream_name":"stderr","time":47.093792303,"data":"  cells[i][c] = re.sub('\\\\\\\\\\|', '|', cell)\n"}
+,{"stream_name":"stderr","time":47.30016577,"data":"/usr/local/lib/python3.12/dist-packages/nbconvert/filters/filter_links.py:36: SyntaxWarning: invalid escape sequence '\\_'\n"}
+,{"stream_name":"stderr","time":47.30019619,"data":"  text = re.sub(r'_', '\\_', text) # Escape underscores in display text\n"}
+,{"stream_name":"stderr","time":47.918543918,"data":"[NbConvertApp] Converting notebook __script__.ipynb to html\n"}
+,{"stream_name":"stderr","time":49.037777146,"data":"[NbConvertApp] Writing 289714 bytes to __results__.html\n"}
+]

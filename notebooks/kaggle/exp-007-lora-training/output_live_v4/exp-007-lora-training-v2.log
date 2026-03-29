@@ -1,0 +1,19 @@
+[{"stream_name":"stdout","time":3.2638350640000002,"data":"Utility path candidates:\n"}
+,{"stream_name":"stdout","time":3.263875694,"data":"  - /kaggle/usr/lib/notebooks/ryanholbrook/nvidia_utility_script/nvidia_cutlass_dsl/python_packages\n"}
+,{"stream_name":"stdout","time":3.263877694,"data":"  - /kaggle/usr/lib/notebooks/ryanholbrook/nvidia-utility-script/nvidia_cutlass_dsl/python_packages\n"}
+,{"stream_name":"stderr","time":3.263844804,"data":"Traceback (most recent call last):\n"}
+,{"stream_name":"stderr","time":3.263882654,"data":"  File \"/kaggle/src/script.py\", line 108, in \u003cmodule\u003e\n"}
+,{"stream_name":"stderr","time":3.263884424,"data":"    utility_root = find_utility_root()\n"}
+,{"stream_name":"stderr","time":3.263886364,"data":"                   ^^^^^^^^^^^^^^^^^^^\n"}
+,{"stream_name":"stderr","time":3.263887224,"data":"  File \"/kaggle/src/script.py\", line 73, in find_utility_root\n"}
+,{"stream_name":"stderr","time":3.263888264,"data":"    raise FileNotFoundError(\"Could not locate the NVIDIA utility script packages.\")\n"}
+,{"stream_name":"stderr","time":3.263900494,"data":"FileNotFoundError: Could not locate the NVIDIA utility script packages.\n"}
+,{"stream_name":"stderr","time":4.846669691,"data":"/usr/local/lib/python3.12/dist-packages/mistune.py:435: SyntaxWarning: invalid escape sequence '\\|'\n"}
+,{"stream_name":"stderr","time":4.846688691,"data":"  cells[i][c] = re.sub('\\\\\\\\\\|', '|', cell)\n"}
+,{"stream_name":"stderr","time":5.190209784,"data":"/usr/local/lib/python3.12/dist-packages/nbconvert/filters/filter_links.py:36: SyntaxWarning: invalid escape sequence '\\_'\n"}
+,{"stream_name":"stderr","time":5.190224084,"data":"  text = re.sub(r'_', '\\_', text) # Escape underscores in display text\n"}
+,{"stream_name":"stderr","time":6.929408628,"data":"/usr/local/lib/python3.12/dist-packages/traitlets/traitlets.py:2915: FutureWarning: --Exporter.preprocessors=[\"nbconvert.preprocessors.ExtractOutputPreprocessor\"] for containers is deprecated in traitlets 5.0. You can pass `--Exporter.preprocessors item` ... multiple times to add items to a list.\n"}
+,{"stream_name":"stderr","time":6.929425298,"data":"  warn(\n"}
+,{"stream_name":"stderr","time":6.967905458,"data":"[NbConvertApp] Converting notebook __script__.ipynb to html\n"}
+,{"stream_name":"stderr","time":7.861619049,"data":"[NbConvertApp] Writing 342349 bytes to __results__.html\n"}
+]

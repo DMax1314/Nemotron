@@ -1,0 +1,65 @@
+{
+  "overall_accuracy": 0.7581052631578947,
+  "family_report": {
+    "bit": {
+      "total": 1602,
+      "solved": 1314,
+      "correct": 1297,
+      "accuracy": 0.8096129837702871
+    },
+    "cipher": {
+      "total": 1576,
+      "solved": 1576,
+      "correct": 1576,
+      "accuracy": 1.0
+    },
+    "gravity": {
+      "total": 1597,
+      "solved": 1597,
+      "correct": 1307,
+      "accuracy": 0.8184095178459612
+    },
+    "roman": {
+      "total": 1576,
+      "solved": 1576,
+      "correct": 1576,
+      "accuracy": 1.0
+    },
+    "symbol": {
+      "total": 1555,
+      "solved": 0,
+      "correct": 0,
+      "accuracy": 0.0
+    },
+    "unit": {
+      "total": 1594,
+      "solved": 1594,
+      "correct": 1446,
+      "accuracy": 0.9071518193224593
+    }
+  },
+  "train_rows": 9500,
+  "test_rows": 3,
+  "test_exact_id_overlap": 3,
+  "test_exact_prompt_overlap": 3,
+  "test_predictions": [
+    {
+      "id": "00066667",
+      "prediction": "10010111",
+      "family": "bit",
+      "used_lookup": true
+    },
+    {
+      "id": "000b53cf",
+      "prediction": "01000011",
+      "family": "bit",
+      "used_lookup": true
+    },
+    {
+      "id": "00189f6a",
+      "prediction": "cat imagines book",
+      "family": "cipher",
+      "used_lookup": true
+    }
+  ]
+}

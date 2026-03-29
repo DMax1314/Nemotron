@@ -1,0 +1,13 @@
+{
+  "id": "zhendongli923/exp-006-lora-adapter-v1",
+  "title": "exp-006-lora-adapter-v1",
+  "code_file": "train_and_submit.py",
+  "language": "python",
+  "kernel_type": "script",
+  "is_private": true,
+  "enable_gpu": true,
+  "enable_internet": true,
+  "dataset_sources": ["sebmontreal/nvidia-nemotron-model-reasoning-challenge"],
+  "competition_sources": ["nvidia-nemotron-model-reasoning-challenge"],
+  "model_sources": ["metric/nemotron-3-nano-30b-a3b-bf16/Transformers/default/1"]
+}

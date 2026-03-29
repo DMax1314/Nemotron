@@ -1,0 +1,13 @@
+{
+  "id": "zhendongli923/exp-001-prompt-zeroshot-v3",
+  "title": "exp-001-prompt-zeroshot-v3",
+  "code_file": "baseline_prompt_only_ascii.py",
+  "language": "python",
+  "kernel_type": "script",
+  "is_private": true,
+  "enable_gpu": true,
+  "enable_internet": true,
+  "dataset_sources": ["sebmontreal/nvidia-nemotron-model-reasoning-challenge"],
+  "competition_sources": [],
+  "model_sources": []
+}

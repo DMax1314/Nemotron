@@ -1,0 +1,33 @@
+[{"stream_name":"stdout","time":44.42226741,"data":"Loading model and tokenizer...\n"}
+,{"stream_name":"stderr","time":46.179390925,"data":"`torch_dtype` is deprecated! Use `dtype` instead!\n"}
+,{"stream_name":"stderr","time":46.23863078,"data":"Traceback (most recent call last):\n"}
+,{"stream_name":"stderr","time":46.238652737,"data":"  File \"/root/.cache/huggingface/modules/transformers_modules/_1/modeling_nemotron_h.py\", line 64, in \u003cmodule\u003e\n"}
+,{"stream_name":"stderr","time":46.238801429,"data":"    from mamba_ssm.ops.triton.layernorm_gated import rmsnorm_fn\n"}
+,{"stream_name":"stderr","time":46.238809532,"data":"ModuleNotFoundError: No module named 'mamba_ssm'\n"}
+,{"stream_name":"stderr","time":46.238813483,"data":"\n"}
+,{"stream_name":"stderr","time":46.238818936,"data":"During handling of the above exception, another exception occurred:\n"}
+,{"stream_name":"stderr","time":46.238822131,"data":"\n"}
+,{"stream_name":"stderr","time":46.238824446,"data":"Traceback (most recent call last):\n"}
+,{"stream_name":"stderr","time":46.238826963,"data":"  File \"/kaggle/src/script.py\", line 25, in \u003cmodule\u003e\n"}
+,{"stream_name":"stderr","time":46.238951991,"data":"    model = AutoModelForCausalLM.from_pretrained(\n"}
+,{"stream_name":"stderr","time":46.239044993,"data":"            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n"}
+,{"stream_name":"stderr","time":46.239101902,"data":"  File \"/usr/local/lib/python3.12/dist-packages/transformers/models/auto/auto_factory.py\", line 354, in from_pretrained\n"}
+,{"stream_name":"stderr","time":46.239327216,"data":"    model_class = get_class_from_dynamic_module(\n"}
+,{"stream_name":"stderr","time":46.239371086,"data":"                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n"}
+,{"stream_name":"stderr","time":46.239413991,"data":"  File \"/usr/local/lib/python3.12/dist-packages/transformers/dynamic_module_utils.py\", line 583, in get_class_from_dynamic_module\n"}
+,{"stream_name":"stderr","time":46.239653191,"data":"    return get_class_in_module(class_name, final_module, force_reload=force_download)\n"}
+,{"stream_name":"stderr","time":46.239954639,"data":"           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n"}
+,{"stream_name":"stderr","time":46.23997705,"data":"  File \"/usr/local/lib/python3.12/dist-packages/transformers/dynamic_module_utils.py\", line 309, in get_class_in_module\n"}
+,{"stream_name":"stderr","time":46.240117107,"data":"    module_spec.loader.exec_module(module)\n"}
+,{"stream_name":"stderr","time":46.240124719,"data":"  File \"\u003cfrozen importlib._bootstrap_external\u003e\", line 999, in exec_module\n"}
+,{"stream_name":"stderr","time":46.240128817,"data":"  File \"\u003cfrozen importlib._bootstrap\u003e\", line 488, in _call_with_frames_removed\n"}
+,{"stream_name":"stderr","time":46.240139726,"data":"  File \"/root/.cache/huggingface/modules/transformers_modules/_1/modeling_nemotron_h.py\", line 66, in \u003cmodule\u003e\n"}
+,{"stream_name":"stderr","time":46.240306377,"data":"    raise ImportError(\"mamba-ssm is required by the Mamba model but cannot be imported\")\n"}
+,{"stream_name":"stderr","time":46.240313017,"data":"ImportError: mamba-ssm is required by the Mamba model but cannot be imported\n"}
+,{"stream_name":"stderr","time":50.872866638,"data":"/usr/local/lib/python3.12/dist-packages/mistune.py:435: SyntaxWarning: invalid escape sequence '\\|'\n"}
+,{"stream_name":"stderr","time":50.872914289,"data":"  cells[i][c] = re.sub('\\\\\\\\\\|', '|', cell)\n"}
+,{"stream_name":"stderr","time":51.117028863,"data":"/usr/local/lib/python3.12/dist-packages/nbconvert/filters/filter_links.py:36: SyntaxWarning: invalid escape sequence '\\_'\n"}
+,{"stream_name":"stderr","time":51.117055392,"data":"  text = re.sub(r'_', '\\_', text) # Escape underscores in display text\n"}
+,{"stream_name":"stderr","time":51.774778364,"data":"[NbConvertApp] Converting notebook __script__.ipynb to html\n"}
+,{"stream_name":"stderr","time":53.032461512,"data":"[NbConvertApp] Writing 289714 bytes to __results__.html\n"}
+]

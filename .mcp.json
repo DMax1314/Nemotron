@@ -1,0 +1,12 @@
+{
+  "mcpServers": {
+    "kaggle": {
+      "command": "C:\\Python314\\Scripts\\kaggle-mcp.exe",
+      "args": [],
+      "env": {
+        "KAGGLE_USERNAME": "zhendongli923",
+        "KAGGLE_KEY": "KGAT_af9d731d61bc3b9ba65a3ff794bb3455"
+      }
+    }
+  }
+}

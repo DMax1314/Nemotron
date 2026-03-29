@@ -1,0 +1,16 @@
+{
+  "id": "zhendongli923/exp-007-lora-training-v2",
+  "title": "exp-007-lora-training-v2",
+  "code_file": "train_lora.py",
+  "language": "python",
+  "kernel_type": "script",
+  "is_private": true,
+  "enable_gpu": true,
+  "enable_internet": false,
+  "dataset_sources": [],
+  "competition_sources": ["nvidia-nemotron-model-reasoning-challenge"],
+  "kernel_sources": ["ryanholbrook/nvidia-utility-script"],
+  "model_sources": ["metric/nemotron-3-nano-30b-a3b-bf16/Transformers/default/1"],
+  "machine_shape": "NvidiaRtxPro6000",
+  "docker_image": "gcr.io/kaggle-private-byod/python@sha256:9fa0da194fad2241d3f01a80581cbecbd3a258b4d1b695e2cbbbc62a0fd205ac"
+}
