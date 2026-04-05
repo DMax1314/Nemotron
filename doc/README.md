@@ -1,45 +1,45 @@
-# NVIDIA Nemotron Model Reasoning Challenge 项目
+# NVIDIA Nemotron Model Reasoning Challenge Project
 
-本项目用于参加 Kaggle `NVIDIA Nemotron Model Reasoning Challenge`。
+This project is for participating in the Kaggle `NVIDIA Nemotron Model Reasoning Challenge`.
 
-该挑战聚焦于使用 Nemotron 开源模型、数据集和训练 recipe，探索提升推理准确率的方法；评测将基于 NVIDIA Research 提供的新 reasoning benchmark。
+The challenge focuses on exploring methods to improve reasoning accuracy using Nemotron open-source models, datasets, and training recipes. Evaluation will be based on a new reasoning benchmark provided by NVIDIA Research.
 
-## 目录结构
+## Directory Structure
 
 ```text
 Nemotron/
-├── CLAUDE.md              # Claude agent 项目级指令
-├── CODEX.md               # Codex agent 项目级指令
-├── TODO.md                # 项目待办事项
-├── .agents/               # Agent 角色定义与提示词
-├── _agents/workflows/     # 工作流定义
-├── doc/                   # 项目文档
-├── meeting/               # 会议记录与归档
-├── scripts/               # 运行脚本
-└── src/                   # 源代码（按需要补充）
+├── CLAUDE.md              # Claude agent project-level instructions
+├── CODEX.md               # Codex agent project-level instructions
+├── TODO.md                # Project todo list
+├── .agents/               # Agent role definitions and prompts
+├── _agents/workflows/     # Workflow definitions
+├── doc/                   # Project documentation
+├── meeting/               # Meeting notes and archives
+├── scripts/               # Runtime scripts
+└── src/                   # Source code (as needed)
 ```
 
-## 当前工作重点
+## Current Priorities
 
-1. 对齐 Kaggle 官方规则、数据和评测定义
-2. 建立最小可复现 baseline
-3. 把实验、提交和决策沉淀到本地文档
+1. Align with Kaggle official rules, data, and evaluation definitions.
+2. Establish a minimum reproducible baseline.
+3. Document experiments, submissions, and decisions in local documentation.
 
-## 快速开始
-连接kaggle的cli上传,所有实验全部在kaggle上运行,禁止在本地运行,本地只做代码管理和文档记录.
-每天只能5次提交,所以要珍惜提交机会.
+## Quick Start
+Connect via Kaggle CLI for uploads. All experiments must run on Kaggle; local execution is prohibited. Local environment is for code management and documentation only.
+Submissions are limited to 5 per day, so use them wisely.
 
-## 技术方向
+## Technical Direction
 
 - Prompt engineering
 - Few-shot / CoT / self-consistency
 - Data filtering / synthetic data generation
 - Lightweight fine-tuning
-- RL 或偏好优化
+- RL or preference optimization
 - Verifier / reranker / judge
 
-## 协作说明
+## Collaboration Guidelines
 
-- 项目沟通与文档使用中文
-- 未确认的官方细节统一标记为 `TBD`
-- 任何旧项目遗留信息都不能视为当前项目事实
+- Project communication and documentation are in English.
+- Use `TBD` for unconfirmed official details.
+- Legacy information from previous projects must not be treated as current project facts.

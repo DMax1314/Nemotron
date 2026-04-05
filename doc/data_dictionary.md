@@ -1,41 +1,41 @@
-# 数据字典 - NVIDIA Nemotron Model Reasoning Challenge
+# Data Dictionary - NVIDIA Nemotron Model Reasoning Challenge
 
-更新时间: 2026-03-28
+Updated: 2026-03-28
 
-## 文件概览
+## File Overview
 
-| 文件 | 行数 | 大小 | 说明 |
+| File | Rows | Size | Description |
 |---|---:|---:|---|
-| `train.csv` | 9500 | 3.07 MB | 训练集，包含答案列 |
-| `test.csv` | 3 | 1.46 KB | 当前公开测试集，不包含答案列 |
+| `train.csv` | 9500 | 3.07 MB | Training set, includes answer column |
+| `test.csv` | 3 | 1.46 KB | Current public test set, excludes answer column |
 
 ## Schema
 
 ### `train.csv`
 
-| 字段 | 类型 | 说明 | 示例 |
+| Field | Type | Description | Example |
 |---|---|---|---|
-| `id` | string | 样本唯一标识 | `00066667` |
-| `prompt` | string | 题目全文 | `In Alice's Wonderland, ...` |
-| `answer` | string | 标准答案 | `10010111` |
+| `id` | string | Unique sample identifier | `00066667` |
+| `prompt` | string | Full question text | `In Alice's Wonderland, ...` |
+| `answer` | string | Standard answer | `10010111` |
 
 ### `test.csv`
 
-| 字段 | 类型 | 说明 | 示例 |
+| Field | Type | Description | Example |
 |---|---|---|---|
-| `id` | string | 样本唯一标识 | `00066667` |
-| `prompt` | string | 题目全文 | `In Alice's Wonderland, ...` |
+| `id` | string | Unique sample identifier | `00066667` |
+| `prompt` | string | Full question text | `In Alice's Wonderland, ...` |
 
-## 已验证事实
+## Verified Facts
 
-- `train.csv` 的标签列名是 `answer`，不是 `prediction`
-- 当前公开 `test.csv` 只有 3 行
-- 当前公开 `test.csv` 的 3 个 `id` 全部存在于 `train.csv`
-- 当前公开 `test.csv` 的 3 条 `prompt` 与 `train.csv` 中对应样本完全一致
+- The label column name in `train.csv` is `answer`, not `prediction`.
+- The current public `test.csv` contains only 3 rows.
+- All 3 `id`s in the current public `test.csv` exist in `train.csv`.
+- The 3 `prompt`s in the current public `test.csv` are identical to the corresponding samples in `train.csv`.
 
-## 任务家族分布
+## Task Family Distribution
 
-按 prompt 首句粗分，训练集共有 6 个主要家族:
+Broadly categorized by the first sentence of the prompt, the training set has 6 major families:
 
 | family | count |
 |---|---:|
@@ -46,25 +46,25 @@
 | `roman` | 1576 |
 | `symbol` | 1555 |
 
-## 答案格式统计
+## Answer Format Statistics
 
-- 平均长度: `8.39`
-- 中位数长度: `5`
-- 最短: `1`
-- 最长: `39`
+- Average length: `8.39`
+- Median length: `5`
+- Shortest: `1`
+- Longest: `39`
 
-粗分布:
+Rough distribution:
 
-| 类型 | 数量 |
+| Type | Count |
 |---|---:|
 | number-like | 5480 |
 | single-token | 2433 |
 | multi-token | 1576 |
-| 单字母选项 | 11 |
+| single-letter option | 11 |
 
-## 提交格式
+## Submission Format
 
-提交文件应为:
+The submission file should be:
 
 ```csv
 id,prediction
@@ -72,24 +72,24 @@ id,prediction
 ...
 ```
 
-## 当前工作流观察
+## Current Workflow Observations
 
-- 直接运行 `kaggle competitions submit -c nvidia-nemotron-model-reasoning-challenge -f <csv>` 返回 HTTP 400
-- 实际可工作的路径是:
-  1. 准备 Kaggle kernel
-  2. push 新版本
-  3. notebook 输出 `submission.zip`
-  4. 等待 notebook run 完成
-  5. 再按 code competition 方式提交 notebook version
+- Running `kaggle competitions submit -c nvidia-nemotron-model-reasoning-challenge -f <csv>` returns HTTP 400.
+- The actual working path is:
+  1. Prepare a Kaggle kernel.
+  2. Push a new version.
+  3. Notebook outputs `submission.zip`.
+  4. Wait for the notebook run to complete.
+  5. Submit the notebook version as a code competition entry.
 
-注意:
+Note:
 
-- 上述工作流是 2026-03-28 的实测结论
-- 这说明该比赛至少在 CLI 层面不能按普通 tabular competition 直接传 CSV
-- competition source 在 Kaggle 运行环境中的实际挂载路径为:
+- This workflow was confirmed by testing on 2026-03-28.
+- This suggests the competition cannot accept direct CSV uploads via CLI, at least at this stage.
+- The actual mount path for the competition source in the Kaggle environment is:
   - `/kaggle/input/competitions/nvidia-nemotron-model-reasoning-challenge/`
 
-## 下载命令
+## Download Command
 
 ```bash
 kaggle competitions download -c nvidia-nemotron-model-reasoning-challenge -p data/raw

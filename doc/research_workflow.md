@@ -1,86 +1,86 @@
-# 研究工作流 — NVIDIA Nemotron Model Reasoning Challenge
+# Research Workflow — NVIDIA Nemotron Model Reasoning Challenge
 
-## 总体流程
+## Overall Flow
 
 ```text
-官方规则对齐 -> 数据理解 -> 快速 baseline -> 训练型 baseline -> 提升实验 -> 提交 -> 复盘
+Official Rules Alignment -> Data Understanding -> Fast Baseline -> Training Baseline -> Improvement Experiments -> Submission -> Review
        ^                                                                  |
-       └--------------------------- 迭代反馈 ------------------------------┘
+       └--------------------------- Iterative Feedback --------------------┘
 ```
 
-## Phase 0: 官方信息对齐
+## Phase 0: Official Context Alignment
 
-- [ ] 通读 Kaggle `Overview / Data / Evaluation / Rules`
-- [ ] 把已确认信息同步到 `doc/instruction.md`
-- [ ] 建立 `doc/data_dictionary.md`
-- [ ] 确认合法资源边界、提交次数限制和时间线
+- [ ] Thoroughly read Kaggle `Overview / Data / Evaluation / Rules`.
+- [ ] Sync confirmed info to `doc/instruction.md`.
+- [ ] Establish `doc/data_dictionary.md`.
+- [ ] Confirm valid resource boundaries, submission limits, and timelines.
 
-## Phase 1: 数据与 benchmark 理解
+## Phase 1: Data and Benchmark Understanding
 
-- [ ] 下载并清点所有官方文件
-- [ ] 建立样本 schema 与提交 schema
-- [ ] 分析输入长度、标签空间、任务类型和难度分布
-- [ ] 确认可复现的本地验证方案
-- [ ] 输出第一版误差分析模板
+- [ ] Download and inventory all official files.
+- [ ] Establish sample and submission schemas.
+- [ ] Analyze input length, label space, task types, and difficulty distribution.
+- [ ] Confirm a reproducible local validation scheme.
+- [ ] Output the first version of the error analysis template.
 
-## Phase 2: 快速 baseline
+## Phase 2: Fast Baseline
 
-- [ ] Zero-shot
-- [ ] Few-shot
-- [ ] Chain-of-thought / structured reasoning
-- [ ] Self-consistency / reranking
-- [ ] 记录成本、延迟和分数
+- [ ] Zero-shot.
+- [ ] Few-shot.
+- [ ] Chain-of-thought / structured reasoning.
+- [ ] Self-consistency / reranking.
+- [ ] Record cost, latency, and scores.
 
-## Phase 3: 训练与后训练
+## Phase 3: Training and Post-training
 
-- [ ] Lightweight fine-tuning（LoRA / QLoRA / adapter）
-- [ ] Data filtering / curation
-- [ ] Synthetic data generation
-- [ ] RL / preference optimization 可行性评估
+- [ ] Lightweight fine-tuning (LoRA / QLoRA / adapter).
+- [ ] Data filtering / curation.
+- [ ] Synthetic data generation.
+- [ ] Feasibility assessment for RL / preference optimization.
 
-## Phase 4: 提升与提交
+## Phase 4: Improvement and Submission
 
-- [ ] Verifier / judge / reranker
-- [ ] 推理时扩展或集成
-- [ ] 生成合法提交文件
-- [ ] 提交 Kaggle 并记录 public score
-- [ ] 分析线上/线下差异
+- [ ] Verifier / judge / reranker.
+- [ ] Test-time scaling or ensembles.
+- [ ] Generate valid submission files.
+- [ ] Submit to Kaggle and record public score.
+- [ ] Analyze online vs. offline performance gaps.
 
-## 调研重点
+## Research Focus
 
-### 官方资源
+### Official Resources
 
-- Nemotron 官方模型与技术博客
-- Kaggle 比赛页
-- Hugging Face 上的 Nemotron 模型卡与数据集卡
+- Nemotron official models and technical blogs.
+- Kaggle competition page.
+- Nemotron model and dataset cards on Hugging Face.
 
-### 技术主题
+### Technical Themes
 
-- 推理增强 prompt 设计
-- Test-time scaling
-- Self-consistency / best-of-N
-- Lightweight fine-tuning
-- Synthetic reasoning data
-- Verifier / judge / reranker
-- Reward modeling / RL
-- Benchmark contamination 与评测鲁棒性
+- Reasoning-enhanced prompt design.
+- Test-time scaling.
+- Self-consistency / best-of-N.
+- Lightweight fine-tuning.
+- Synthetic reasoning data.
+- Verifier / judge / reranker.
+- Reward modeling / RL.
+- Benchmark contamination and evaluation robustness.
 
-## Agent 分工
+## Agent Roles
 
-| Agent | 职责 |
+| Agent | Responsibility |
 |-------|------|
-| **Product Manager** | 对齐规则、制定里程碑、做优先级决策 |
-| **Scholar** | 调研 Nemotron 资源、推理增强方法与相关论文 |
-| **Data Scientist** | 数据清点、EDA、误差分析、分桶评测 |
-| **MLE** | baseline、微调、推理策略与评测 |
-| **SWE** | 数据/训练/评测/提交 pipeline |
-| **Code Reviewer** | 正确性、复现性、规则风险审查 |
-| **Intern** | 下载、跑脚本、收集结果、维护文档 |
+| **Product Manager** | Rule alignment, milestone planning, priority decisions. |
+| **Scholar** | Researching Nemotron resources, reasoning enhancement methods, and related papers. |
+| **Data Scientist** | Data inventory, EDA, error analysis, bucket-based evaluation. |
+| **MLE** | Baselines, fine-tuning, inference strategies, and evaluation experiments. |
+| **SWE** | Data/Training/Evaluation/Submission pipelines. |
+| **Code Reviewer** | Correctness, reproducibility, and rule risk review. |
+| **Intern** | Downloads, running scripts, gathering results, and maintaining documentation. |
 
-## 每日检查清单
+## Daily Checklist
 
-- [ ] `doc/experiments.md` 已更新
-- [ ] `TODO.md` 已更新
-- [ ] 是否发现新的官方规则信息
-- [ ] 是否记录了失败样例和误差模式
-- [ ] 下一步实验是否有明确目标与停止条件
+- [ ] `doc/experiments.md` updated.
+- [ ] `TODO.md` updated.
+- [ ] Any new official rule information discovered?
+- [ ] Failure cases and error patterns recorded?
+- [ ] The next experiment has clear goals and stopping conditions?

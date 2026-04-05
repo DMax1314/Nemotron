@@ -1,32 +1,32 @@
-# ADR-{序号}: {决策标题}
+# ADR-{Number}: {Decision Title}
 
-## 状态
+## Status
 
 {Proposed | Accepted | Deprecated | Superseded by ADR-XXX}
 
-## 日期
+## Date
 
 YYYY-MM-DD
 
-## 背景
+## Context
 
-{描述导致此决策的上下文和问题}
+{Description of the context and the problem led to this decision}
 
-## 决策
+## Decision
 
-{描述做出的决策}
+{Description of the decision made}
 
-## 选项对比
+## Options Comparison
 
-| 方案 | 优点 | 缺点 |
+| Solution | Pros | Cons |
 |------|------|------|
-| 方案 A | ... | ... |
-| 方案 B | ... | ... |
+| Option A | ... | ... |
+| Option B | ... | ... |
 
-## 影响
+## Impact
 
-{描述此决策对项目的影响，包括正面和负面}
+{Description of the impact on the project, including positive and negative effects}
 
-## 相关实验
+## Related Experiments
 
-{关联的实验编号，如 exp-001}
+{Associated experiment numbers, e.g., exp-001}

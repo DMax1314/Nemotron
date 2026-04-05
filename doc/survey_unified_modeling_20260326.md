@@ -1,23 +1,23 @@
-# 调研报告归档：迁移前统一建模方向
+# Archive: Pre-migration Unified Modeling Direction
 
-本文件来自迁移前的推荐系统调研报告，主题是“统一序列建模与特征交互”，与当前 Kaggle `NVIDIA Nemotron Model Reasoning Challenge` 无关，现已归档。
+This document is archived from a pre-migration recommendation system research report titled "Unified Sequence Modeling and Feature Interaction." It is unrelated to the current Kaggle `NVIDIA Nemotron Model Reasoning Challenge`.
 
-## 不再适用的内容
+## Retired Content
 
-- 推荐系统统一建模主线
-- OneTrans / HyFormer / InterFormer 作为当前方向
-- CTR / CVR / gAUC 等实验结论
-- 旧数据 schema 与工业推荐平台假设
+- Unified sequence modeling for recommendation systems as the main track.
+- OneTrans / HyFormer / InterFormer as the current direction.
+- Experimental conclusions like CTR / CVR / gAUC.
+- Industrial recommendation platform assumptions and old data schemas.
 
-## 当前项目的替代方向
+## Current Project Priorities
 
-当前项目应优先关注：
+The current project should prioritize:
 
-- Nemotron 官方模型与训练 recipe
-- Prompting 与 test-time scaling
-- Lightweight fine-tuning
-- Data filtering / synthetic data generation
-- Verifier / reranker / judge
-- 本地评测与 Kaggle 提交闭环
+- Nemotron official models and training recipes.
+- Prompting and test-time scaling.
+- Lightweight fine-tuning (LoRA / QLoRA / adapter).
+- Data filtering / synthetic data generation.
+- Verifier / reranker / judge.
+- Local evaluation and Kaggle submission loop.
 
-需要新的调研时，请新建 Nemotron 主题报告，不要继续扩展本文件。
+For new research, please create a new Nemotron-themed report instead of extending this file.

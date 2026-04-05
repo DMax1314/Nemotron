@@ -1,0 +1,167 @@
+[{"stream_name":"stderr","time":6.363850536,"data":"0.00s - Debugger warning: It seems that frozen modules are being used, which may\n"}
+,{"stream_name":"stderr","time":6.363880356,"data":"0.00s - make the debugger miss breakpoints. Please pass -Xfrozen_modules=off\n"}
+,{"stream_name":"stderr","time":6.363882186,"data":"0.00s - to python to disable frozen modules.\n"}
+,{"stream_name":"stderr","time":6.363883726,"data":"0.00s - Note: Debugging will proceed. Set PYDEVD_DISABLE_FILE_VALIDATION=1 to disable this validation.\n"}
+,{"stream_name":"stderr","time":6.789872109,"data":"0.00s - Debugger warning: It seems that frozen modules are being used, which may\n"}
+,{"stream_name":"stderr","time":6.789894979,"data":"0.00s - make the debugger miss breakpoints. Please pass -Xfrozen_modules=off\n"}
+,{"stream_name":"stderr","time":6.789896589,"data":"0.00s - to python to disable frozen modules.\n"}
+,{"stream_name":"stderr","time":6.789897879,"data":"0.00s - Note: Debugging will proceed. Set PYDEVD_DISABLE_FILE_VALIDATION=1 to disable this validation.\n"}
+,{"stream_name":"stdout","time":34.641446478,"data":"Utility path candidates:\n"}
+,{"stream_name":"stdout","time":34.641468908,"data":"  - /kaggle/usr/lib/notebooks/ryanholbrook/nvidia_utility_script/nvidia_cutlass_dsl/python_packages\n"}
+,{"stream_name":"stdout","time":34.641470818,"data":"  - /kaggle/usr/lib/notebooks/ryanholbrook/nvidia-utility-script/nvidia_cutlass_dsl/python_packages\n"}
+,{"stream_name":"stdout","time":34.641472408,"data":"  - /kaggle/usr/lib/notebooks/ryanholbrook/nvidia_utility_script/nvidia_cutlass_dsl/python_packages\n"}
+,{"stream_name":"stdout","time":34.641473498,"data":"Added site dir: /kaggle/usr/lib/notebooks/ryanholbrook/nvidia_utility_script/nvidia_cutlass_dsl/python_packages\n"}
+,{"stream_name":"stdout","time":34.641474728,"data":"Resolved utility root: /kaggle/usr/lib/notebooks/ryanholbrook/nvidia_utility_script\n"}
+,{"stream_name":"stdout","time":36.799929692,"data":"Patched Triton PTXAS binaries.\n"}
+,{"stream_name":"stderr","time":87.061857568,"data":"/kaggle/usr/lib/notebooks/ryanholbrook/nvidia_utility_script/torch/compiler/__init__.py:148: FutureWarning: torch._dynamo.allow_in_graph is deprecated and will be removed in a future version. Use torch._dynamo.nonstrict_trace instead.\n"}
+,{"stream_name":"stderr","time":87.061878858,"data":"  return torch._dynamo.allow_in_graph(fn)\n"}
+,{"stream_name":"stderr","time":87.061880808,"data":"\n"}
+,{"stream_name":"stderr","time":87.061882368,"data":"/kaggle/usr/lib/notebooks/ryanholbrook/nvidia_utility_script/torch/compiler/__init__.py:148: FutureWarning: torch._dynamo.allow_in_graph is deprecated and will be removed in a future version. Use torch._dynamo.nonstrict_trace instead.\n"}
+,{"stream_name":"stderr","time":87.061887748,"data":"  return torch._dynamo.allow_in_graph(fn)\n"}
+,{"stream_name":"stdout","time":87.551722189,"data":"Using train.csv: /kaggle/input/competitions/nvidia-nemotron-model-reasoning-challenge/train.csv\n"}
+,{"stream_name":"stdout","time":87.551743259,"data":"Loaded train rows: 9500\n"}
+,{"stream_name":"stdout","time":87.551745239,"data":"Full family counts: {'bit': 1602, 'gravity': 1597, 'unit': 1594, 'cipher': 1576, 'roman': 1576, 'symbol': 1555}\n"}
+,{"stream_name":"stdout","time":87.551746639,"data":"Requested family targets: {'symbol': 1500, 'bit': 1500, 'gravity': 1100, 'unit': 1100, 'cipher': 400, 'roman': 400}\n"}
+,{"stream_name":"stdout","time":87.551747859,"data":"Actual sampled family counts: {'bit': 1500, 'symbol': 1500, 'gravity': 1100, 'unit': 1100, 'cipher': 400, 'roman': 400}\n"}
+,{"stream_name":"stdout","time":87.551749109,"data":"Sampled train rows: 6000\n"}
+,{"stream_name":"stdout","time":87.551750739,"data":"Model download root: /kaggle/input/models/metric/nemotron-3-nano-30b-a3b-bf16/transformers/default/1\n"}
+,{"stream_name":"stdout","time":87.551757799,"data":"Resolved model candidates:\n"}
+,{"stream_name":"stdout","time":87.551758889,"data":"  - /kaggle/input/models/metric/nemotron-3-nano-30b-a3b-bf16/transformers/default/1\n"}
+,{"stream_name":"stdout","time":87.551760089,"data":"Resolved model path: /kaggle/input/models/metric/nemotron-3-nano-30b-a3b-bf16/transformers/default/1\n"}
+,{"stream_name":"stderr","time":88.387959303,"data":"`torch_dtype` is deprecated! Use `dtype` instead!\n"}
+,{"stream_name":"stderr","time":88.387969563,"data":"\n"}
+,{"stream_name":"stderr","time":88.387970793,"data":"`torch_dtype` is deprecated! Use `dtype` instead!\n"}
+,{"stream_name":"stdout","time":88.584369448,"data":"Patched rmsnorm_fn in 4 loaded modules.\n"}
+,{"stream_name":"stdout","time":506.116396737,"data":"Patched rmsnorm_fn in 5 loaded modules.\n"}
+,{"stream_name":"stdout","time":506.116421667,"data":"Disabled Nemotron fast path in 1 modules.\n"}
+,{"stream_name":"stdout","time":506.116423797,"data":"Base model loaded.\n"}
+,{"stream_name":"stderr","time":507.011296497,"data":"/usr/local/lib/python3.12/dist-packages/torchao/float8/float8_tensor.py:122: FutureWarning: torch._dynamo.allow_in_graph is deprecated and will be removed in a future version. Use torch._dynamo.nonstrict_trace instead.\n"}
+,{"stream_name":"stderr","time":507.011322577,"data":"  @torch._dynamo.allow_in_graph\n"}
+,{"stream_name":"stderr","time":507.011325177,"data":"/usr/local/lib/python3.12/dist-packages/torchao/float8/float8_tensor.py:195: FutureWarning: torch._dynamo.allow_in_graph is deprecated and will be removed in a future version. Use torch._dynamo.nonstrict_trace instead.\n"}
+,{"stream_name":"stderr","time":507.011327317,"data":"  @torch._dynamo.allow_in_graph\n"}
+,{"stream_name":"stderr","time":507.011329147,"data":"/usr/local/lib/python3.12/dist-packages/torchao/float8/float8_scaling_utils.py:90: FutureWarning: torch._dynamo.allow_in_graph is deprecated and will be removed in a future version. Use torch._dynamo.nonstrict_trace instead.\n"}
+,{"stream_name":"stderr","time":507.011331197,"data":"  @torch._dynamo.allow_in_graph\n"}
+,{"stream_name":"stderr","time":507.011332967,"data":"/usr/local/lib/python3.12/dist-packages/torchao/float8/float8_linear.py:60: FutureWarning: torch._dynamo.allow_in_graph is deprecated and will be removed in a future version. Use torch._dynamo.nonstrict_trace instead.\n"}
+,{"stream_name":"stderr","time":507.011335097,"data":"  @torch._dynamo.allow_in_graph\n"}
+,{"stream_name":"stderr","time":507.011336787,"data":"/usr/local/lib/python3.12/dist-packages/torchao/dtypes/nf4tensor.py:1059: FutureWarning: torch._dynamo.allow_in_graph is deprecated and will be removed in a future version. Use torch._dynamo.nonstrict_trace instead.\n"}
+,{"stream_name":"stderr","time":507.011338717,"data":"  @torch._dynamo.allow_in_graph\n"}
+,{"stream_name":"stderr","time":507.011340297,"data":"/usr/local/lib/python3.12/dist-packages/torchao/quantization/subclass.py:206: FutureWarning: torch._dynamo.allow_in_graph is deprecated and will be removed in a future version. Use torch._dynamo.nonstrict_trace instead.\n"}
+,{"stream_name":"stderr","time":507.011342257,"data":"  @torch._dynamo.allow_in_graph\n"}
+,{"stream_name":"stderr","time":507.011343817,"data":"/usr/local/lib/python3.12/dist-packages/torchao/quantization/subclass.py:355: FutureWarning: torch._dynamo.allow_in_graph is deprecated and will be removed in a future version. Use torch._dynamo.nonstrict_trace instead.\n"}
+,{"stream_name":"stderr","time":507.011345667,"data":"  @torch._dynamo.allow_in_graph\n"}
+,{"stream_name":"stderr","time":507.011347227,"data":"/usr/local/lib/python3.12/dist-packages/torchao/quantization/subclass.py:392: FutureWarning: torch._dynamo.allow_in_graph is deprecated and will be removed in a future version. Use torch._dynamo.nonstrict_trace instead.\n"}
+,{"stream_name":"stderr","time":507.011360717,"data":"  @torch._dynamo.allow_in_graph\n"}
+,{"stream_name":"stderr","time":507.011362087,"data":"\n"}
+,{"stream_name":"stderr","time":507.011364297,"data":"/usr/local/lib/python3.12/dist-packages/torchao/float8/float8_tensor.py:122: FutureWarning: torch._dynamo.allow_in_graph is deprecated and will be removed in a future version. Use torch._dynamo.nonstrict_trace instead.\n"}
+,{"stream_name":"stderr","time":507.011365797,"data":"  @torch._dynamo.allow_in_graph\n"}
+,{"stream_name":"stderr","time":507.011367207,"data":"/usr/local/lib/python3.12/dist-packages/torchao/float8/float8_tensor.py:195: FutureWarning: torch._dynamo.allow_in_graph is deprecated and will be removed in a future version. Use torch._dynamo.nonstrict_trace instead.\n"}
+,{"stream_name":"stderr","time":507.011368697,"data":"  @torch._dynamo.allow_in_graph\n"}
+,{"stream_name":"stderr","time":507.011369947,"data":"/usr/local/lib/python3.12/dist-packages/torchao/float8/float8_scaling_utils.py:90: FutureWarning: torch._dynamo.allow_in_graph is deprecated and will be removed in a future version. Use torch._dynamo.nonstrict_trace instead.\n"}
+,{"stream_name":"stderr","time":507.011371447,"data":"  @torch._dynamo.allow_in_graph\n"}
+,{"stream_name":"stderr","time":507.011372807,"data":"/usr/local/lib/python3.12/dist-packages/torchao/float8/float8_linear.py:60: FutureWarning: torch._dynamo.allow_in_graph is deprecated and will be removed in a future version. Use torch._dynamo.nonstrict_trace instead.\n"}
+,{"stream_name":"stderr","time":507.011374277,"data":"  @torch._dynamo.allow_in_graph\n"}
+,{"stream_name":"stderr","time":507.011375477,"data":"/usr/local/lib/python3.12/dist-packages/torchao/dtypes/nf4tensor.py:1059: FutureWarning: torch._dynamo.allow_in_graph is deprecated and will be removed in a future version. Use torch._dynamo.nonstrict_trace instead.\n"}
+,{"stream_name":"stderr","time":507.011376917,"data":"  @torch._dynamo.allow_in_graph\n"}
+,{"stream_name":"stderr","time":507.011378197,"data":"/usr/local/lib/python3.12/dist-packages/torchao/quantization/subclass.py:206: FutureWarning: torch._dynamo.allow_in_graph is deprecated and will be removed in a future version. Use torch._dynamo.nonstrict_trace instead.\n"}
+,{"stream_name":"stderr","time":507.011379587,"data":"  @torch._dynamo.allow_in_graph\n"}
+,{"stream_name":"stderr","time":507.011380807,"data":"/usr/local/lib/python3.12/dist-packages/torchao/quantization/subclass.py:355: FutureWarning: torch._dynamo.allow_in_graph is deprecated and will be removed in a future version. Use torch._dynamo.nonstrict_trace instead.\n"}
+,{"stream_name":"stderr","time":507.011382327,"data":"  @torch._dynamo.allow_in_graph\n"}
+,{"stream_name":"stderr","time":507.011383607,"data":"/usr/local/lib/python3.12/dist-packages/torchao/quantization/subclass.py:392: FutureWarning: torch._dynamo.allow_in_graph is deprecated and will be removed in a future version. Use torch._dynamo.nonstrict_trace instead.\n"}
+,{"stream_name":"stderr","time":507.011385087,"data":"  @torch._dynamo.allow_in_graph\n"}
+,{"stream_name":"stdout","time":512.789559058,"data":"trainable params: 440,069,120 || all params: 32,018,006,464 || trainable%: 1.3744\n"}
+,{"stream_name":"stdout","time":516.689855273,"data":"Prepared 6000 training examples (skipped 0 after truncation/masking).\n"}
+,{"stream_name":"stdout","time":516.689883722,"data":"Starting training: epochs=1, batches=6000, grad_accum=4\n"}
+,{"stream_name":"stdout","time":916.753557602,"data":"epoch=1 step=20 avg_loss=2.7079\n"}
+,{"stream_name":"stdout","time":1315.55900983,"data":"epoch=1 step=40 avg_loss=2.2452\n"}
+,{"stream_name":"stdout","time":1713.559456016,"data":"epoch=1 step=60 avg_loss=2.0623\n"}
+,{"stream_name":"stdout","time":2110.705191937,"data":"epoch=1 step=80 avg_loss=1.9700\n"}
+,{"stream_name":"stdout","time":2511.03736728,"data":"epoch=1 step=100 avg_loss=1.8884\n"}
+,{"stream_name":"stdout","time":2911.922570967,"data":"epoch=1 step=120 avg_loss=1.8384\n"}
+,{"stream_name":"stdout","time":3311.600854711,"data":"epoch=1 step=140 avg_loss=1.7978\n"}
+,{"stream_name":"stdout","time":3711.829058969,"data":"epoch=1 step=160 avg_loss=1.7605\n"}
+,{"stream_name":"stdout","time":4110.12206471,"data":"epoch=1 step=180 avg_loss=1.7269\n"}
+,{"stream_name":"stdout","time":4509.758008525,"data":"epoch=1 step=200 avg_loss=1.7065\n"}
+,{"stream_name":"stdout","time":4910.599828837,"data":"epoch=1 step=220 avg_loss=1.6777\n"}
+,{"stream_name":"stdout","time":5310.685520652,"data":"epoch=1 step=240 avg_loss=1.6433\n"}
+,{"stream_name":"stdout","time":5710.605509158,"data":"epoch=1 step=260 avg_loss=1.6305\n"}
+,{"stream_name":"stdout","time":6109.226624756,"data":"epoch=1 step=280 avg_loss=1.6105\n"}
+,{"stream_name":"stdout","time":6508.867491287,"data":"epoch=1 step=300 avg_loss=1.5868\n"}
+,{"stream_name":"stdout","time":6908.511484137,"data":"epoch=1 step=320 avg_loss=1.5640\n"}
+,{"stream_name":"stdout","time":7309.646752053,"data":"epoch=1 step=340 avg_loss=1.5392\n"}
+,{"stream_name":"stdout","time":7710.904515994,"data":"epoch=1 step=360 avg_loss=1.5222\n"}
+,{"stream_name":"stdout","time":8112.505985647,"data":"epoch=1 step=380 avg_loss=1.5138\n"}
+,{"stream_name":"stdout","time":8513.793375003,"data":"epoch=1 step=400 avg_loss=1.5143\n"}
+,{"stream_name":"stdout","time":8915.302372376,"data":"epoch=1 step=420 avg_loss=1.4999\n"}
+,{"stream_name":"stdout","time":9316.680222249,"data":"epoch=1 step=440 avg_loss=1.4889\n"}
+,{"stream_name":"stdout","time":9719.149830682,"data":"epoch=1 step=460 avg_loss=1.4780\n"}
+,{"stream_name":"stdout","time":10121.92870344,"data":"epoch=1 step=480 avg_loss=1.4725\n"}
+,{"stream_name":"stdout","time":10527.066881759,"data":"epoch=1 step=500 avg_loss=1.4686\n"}
+,{"stream_name":"stdout","time":10930.090185186,"data":"epoch=1 step=520 avg_loss=1.4561\n"}
+,{"stream_name":"stdout","time":11333.194711232,"data":"epoch=1 step=540 avg_loss=1.4527\n"}
+,{"stream_name":"stdout","time":11736.343065447,"data":"epoch=1 step=560 avg_loss=1.4415\n"}
+,{"stream_name":"stdout","time":12138.937898766,"data":"epoch=1 step=580 avg_loss=1.4377\n"}
+,{"stream_name":"stdout","time":12542.758754677,"data":"epoch=1 step=600 avg_loss=1.4315\n"}
+,{"stream_name":"stdout","time":12946.689691297,"data":"epoch=1 step=620 avg_loss=1.4248\n"}
+,{"stream_name":"stdout","time":13350.535985817,"data":"epoch=1 step=640 avg_loss=1.4183\n"}
+,{"stream_name":"stdout","time":13754.220919601,"data":"epoch=1 step=660 avg_loss=1.4092\n"}
+,{"stream_name":"stdout","time":14158.192821978,"data":"epoch=1 step=680 avg_loss=1.4036\n"}
+,{"stream_name":"stdout","time":14563.167581286,"data":"epoch=1 step=700 avg_loss=1.3941\n"}
+,{"stream_name":"stdout","time":14968.236751223,"data":"epoch=1 step=720 avg_loss=1.3846\n"}
+,{"stream_name":"stdout","time":15372.821458088,"data":"epoch=1 step=740 avg_loss=1.3812\n"}
+,{"stream_name":"stdout","time":15778.655489811,"data":"epoch=1 step=760 avg_loss=1.3790\n"}
+,{"stream_name":"stdout","time":16184.02527071,"data":"epoch=1 step=780 avg_loss=1.3699\n"}
+,{"stream_name":"stdout","time":16587.868742952,"data":"epoch=1 step=800 avg_loss=1.3659\n"}
+,{"stream_name":"stdout","time":16989.970514566,"data":"epoch=1 step=820 avg_loss=1.3662\n"}
+,{"stream_name":"stdout","time":17392.222485763,"data":"epoch=1 step=840 avg_loss=1.3615\n"}
+,{"stream_name":"stdout","time":17796.135843035,"data":"epoch=1 step=860 avg_loss=1.3532\n"}
+,{"stream_name":"stdout","time":18200.970208918,"data":"epoch=1 step=880 avg_loss=1.3491\n"}
+,{"stream_name":"stdout","time":18606.510965477,"data":"epoch=1 step=900 avg_loss=1.3429\n"}
+,{"stream_name":"stdout","time":19013.177058377,"data":"epoch=1 step=920 avg_loss=1.3381\n"}
+,{"stream_name":"stdout","time":19419.355134741,"data":"epoch=1 step=940 avg_loss=1.3367\n"}
+,{"stream_name":"stdout","time":19824.039129458,"data":"epoch=1 step=960 avg_loss=1.3326\n"}
+,{"stream_name":"stdout","time":20227.530839045,"data":"epoch=1 step=980 avg_loss=1.3333\n"}
+,{"stream_name":"stdout","time":20632.225368814,"data":"epoch=1 step=1000 avg_loss=1.3263\n"}
+,{"stream_name":"stdout","time":21037.227404965,"data":"epoch=1 step=1020 avg_loss=1.3187\n"}
+,{"stream_name":"stdout","time":21442.276796015,"data":"epoch=1 step=1040 avg_loss=1.3156\n"}
+,{"stream_name":"stdout","time":21847.930900065,"data":"epoch=1 step=1060 avg_loss=1.3090\n"}
+,{"stream_name":"stdout","time":22252.684825249,"data":"epoch=1 step=1080 avg_loss=1.3035\n"}
+,{"stream_name":"stdout","time":22656.526612589,"data":"epoch=1 step=1100 avg_loss=1.2984\n"}
+,{"stream_name":"stdout","time":23060.883693718,"data":"epoch=1 step=1120 avg_loss=1.2939\n"}
+,{"stream_name":"stdout","time":23464.939293964,"data":"epoch=1 step=1140 avg_loss=1.2928\n"}
+,{"stream_name":"stdout","time":23869.754433924,"data":"epoch=1 step=1160 avg_loss=1.2880\n"}
+,{"stream_name":"stdout","time":24275.651638735,"data":"epoch=1 step=1180 avg_loss=1.2830\n"}
+,{"stream_name":"stdout","time":24682.978554214,"data":"epoch=1 step=1200 avg_loss=1.2827\n"}
+,{"stream_name":"stdout","time":25091.037303238,"data":"epoch=1 step=1220 avg_loss=1.2794\n"}
+,{"stream_name":"stdout","time":25496.754658341,"data":"epoch=1 step=1240 avg_loss=1.2762\n"}
+,{"stream_name":"stdout","time":25901.273379502,"data":"epoch=1 step=1260 avg_loss=1.2741\n"}
+,{"stream_name":"stdout","time":26307.116327403,"data":"epoch=1 step=1280 avg_loss=1.2713\n"}
+,{"stream_name":"stdout","time":26711.977011756,"data":"epoch=1 step=1300 avg_loss=1.2685\n"}
+,{"stream_name":"stdout","time":27116.772458172,"data":"epoch=1 step=1320 avg_loss=1.2657\n"}
+,{"stream_name":"stdout","time":27521.475049433,"data":"epoch=1 step=1340 avg_loss=1.2617\n"}
+,{"stream_name":"stdout","time":27926.065559962,"data":"epoch=1 step=1360 avg_loss=1.2601\n"}
+,{"stream_name":"stdout","time":28331.637302068,"data":"epoch=1 step=1380 avg_loss=1.2550\n"}
+,{"stream_name":"stdout","time":28738.341058063,"data":"epoch=1 step=1400 avg_loss=1.2503\n"}
+,{"stream_name":"stdout","time":29144.86373524,"data":"epoch=1 step=1420 avg_loss=1.2453\n"}
+,{"stream_name":"stdout","time":29549.804119886,"data":"epoch=1 step=1440 avg_loss=1.2444\n"}
+,{"stream_name":"stdout","time":29954.880367738,"data":"epoch=1 step=1460 avg_loss=1.2421\n"}
+,{"stream_name":"stdout","time":30359.963911889,"data":"epoch=1 step=1480 avg_loss=1.2435\n"}
+,{"stream_name":"stdout","time":30766.221013931,"data":"epoch=1 step=1500 avg_loss=1.2386\n"}
+,{"stream_name":"stdout","time":30766.221035921,"data":"Finished epoch 1: avg_loss=1.2386\n"}
+,{"stream_name":"stdout","time":30766.221037781,"data":"Saving adapter to /kaggle/working/adapter ...\n"}
+,{"stream_name":"stdout","time":30822.867037805,"data":"Zip contents: ['README.md', 'adapter_config.json', 'adapter_model.safetensors']\n"}
+,{"stream_name":"stdout","time":30822.867061415,"data":"Saved training report: /kaggle/working/train_report.json\n"}
+,{"stream_name":"stdout","time":30822.867063345,"data":"Created submission: /kaggle/working/submission.zip\n"}
+,{"stream_name":"stdout","time":30823.134191012,"data":"Done.\n"}
+,{"stream_name":"stderr","time":30828.111118266,"data":"/usr/local/lib/python3.12/dist-packages/mistune.py:435: SyntaxWarning: invalid escape sequence '\\|'\n"}
+,{"stream_name":"stderr","time":30828.111142736,"data":"  cells[i][c] = re.sub('\\\\\\\\\\|', '|', cell)\n"}
+,{"stream_name":"stderr","time":30828.348485184,"data":"/usr/local/lib/python3.12/dist-packages/nbconvert/filters/filter_links.py:36: SyntaxWarning: invalid escape sequence '\\_'\n"}
+,{"stream_name":"stderr","time":30828.348495574,"data":"  text = re.sub(r'_', '\\_', text) # Escape underscores in display text\n"}
+,{"stream_name":"stderr","time":30828.986150883,"data":"/usr/local/lib/python3.12/dist-packages/traitlets/traitlets.py:2915: FutureWarning: --Exporter.preprocessors=[\"remove_papermill_header.RemovePapermillHeader\"] for containers is deprecated in traitlets 5.0. You can pass `--Exporter.preprocessors item` ... multiple times to add items to a list.\n"}
+,{"stream_name":"stderr","time":30828.986167983,"data":"  warn(\n"}
+,{"stream_name":"stderr","time":30829.028351313,"data":"[NbConvertApp] Converting notebook __notebook__.ipynb to notebook\n"}
+,{"stream_name":"stderr","time":30829.167796332,"data":"[NbConvertApp] Writing 44786 bytes to __notebook__.ipynb\n"}
+,{"stream_name":"stderr","time":30830.657784545,"data":"/usr/local/lib/python3.12/dist-packages/traitlets/traitlets.py:2915: FutureWarning: --Exporter.preprocessors=[\"nbconvert.preprocessors.ExtractOutputPreprocessor\"] for containers is deprecated in traitlets 5.0. You can pass `--Exporter.preprocessors item` ... multiple times to add items to a list.\n"}
+,{"stream_name":"stderr","time":30830.657807925,"data":"  warn(\n"}
+,{"stream_name":"stderr","time":30830.677606041,"data":"[NbConvertApp] Converting notebook __notebook__.ipynb to html\n"}
+,{"stream_name":"stderr","time":30831.186581053,"data":"[NbConvertApp] Writing 377141 bytes to __results__.html\n"}
+]

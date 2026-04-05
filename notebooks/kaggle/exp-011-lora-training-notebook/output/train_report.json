@@ -1,0 +1,43 @@
+{
+  "seed": 42,
+  "model_handle": "metric/nemotron-3-nano-30b-a3b-bf16/transformers/default",
+  "model_download_root": "/kaggle/input/models/metric/nemotron-3-nano-30b-a3b-bf16/transformers/default/1",
+  "model_path": "/kaggle/input/models/metric/nemotron-3-nano-30b-a3b-bf16/transformers/default/1",
+  "train_path": "/kaggle/input/competitions/nvidia-nemotron-model-reasoning-challenge/train.csv",
+  "train_rows": 6000,
+  "family_sample_targets": {
+    "symbol": 1500,
+    "bit": 1500,
+    "gravity": 1100,
+    "unit": 1100,
+    "cipher": 400,
+    "roman": 400
+  },
+  "family_counts_full": {
+    "bit": 1602,
+    "gravity": 1597,
+    "unit": 1594,
+    "cipher": 1576,
+    "roman": 1576,
+    "symbol": 1555
+  },
+  "family_counts_sampled": {
+    "bit": 1500,
+    "symbol": 1500,
+    "gravity": 1100,
+    "unit": 1100,
+    "cipher": 400,
+    "roman": 400
+  },
+  "max_seq_len": 1024,
+  "epochs": 1,
+  "grad_accum": 4,
+  "learning_rate": 0.00015,
+  "weight_decay": 0.01,
+  "lora_rank": 16,
+  "lora_alpha": 32,
+  "lora_dropout": 0.05,
+  "steps": 1500,
+  "final_loss": 2.341356039047241,
+  "mean_loss": 1.2386056336499083
+}

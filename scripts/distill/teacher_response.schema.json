@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "final_answer": {
+      "type": "string",
+      "description": "Exact final answer only, with no extra commentary."
+    },
+    "rule_summary": {
+      "type": "string",
+      "description": "One short sentence summarizing the hidden transformation or reasoning rule."
+    },
+    "reasoning_brief": {
+      "type": "string",
+      "description": "Two to four short sentences explaining the core reasoning, concise and concrete."
+    },
+    "confidence": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1,
+      "description": "Self-estimated confidence in the final answer."
+    }
+  },
+  "required": [
+    "final_answer",
+    "rule_summary",
+    "reasoning_brief",
+    "confidence"
+  ]
+}

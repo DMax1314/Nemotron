@@ -1,0 +1,43 @@
+{
+  "input_csv": "D:\\Lehigh University Dropbox\\Li Zhendong\\Nemotron\\data\\raw\\train.csv",
+  "output_dir": "D:\\Lehigh University Dropbox\\Li Zhendong\\Nemotron\\data\\distill\\holdout_v1",
+  "seed": 42,
+  "eval_ratio": 0.1,
+  "min_eval_per_family": 120,
+  "max_eval_per_family": 200,
+  "rows_total": 9500,
+  "rows_train": 8549,
+  "rows_eval": 951,
+  "family_counts_full": {
+    "bit": 1602,
+    "cipher": 1576,
+    "gravity": 1597,
+    "roman": 1576,
+    "symbol": 1555,
+    "unit": 1594
+  },
+  "family_counts_train": {
+    "bit": 1442,
+    "cipher": 1418,
+    "gravity": 1437,
+    "roman": 1418,
+    "symbol": 1399,
+    "unit": 1435
+  },
+  "family_counts_eval": {
+    "bit": 160,
+    "cipher": 158,
+    "gravity": 160,
+    "roman": 158,
+    "symbol": 156,
+    "unit": 159
+  },
+  "family_target_eval": {
+    "bit": 160,
+    "cipher": 158,
+    "gravity": 160,
+    "roman": 158,
+    "symbol": 156,
+    "unit": 159
+  }
+}
