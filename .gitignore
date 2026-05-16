@@ -12,3 +12,4 @@ meeting
 *.pkg
 tmp
 *.safetensors
+notebooks/kaggle/exp-013-on-policy-rollout/pydeps/triton/_C/libtriton.so

@@ -1,0 +1,100 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "final_answer": {
+      "type": "string",
+      "description": "Exact selected final answer only, with no extra commentary."
+    },
+    "branches": {
+      "type": "array",
+      "minItems": 2,
+      "maxItems": 8,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "branch_id": {
+            "type": "string",
+            "description": "Short branch id such as A, B, or C."
+          },
+          "strategy": {
+            "type": "string",
+            "description": "Concise name or sentence describing this branch's solving strategy."
+          },
+          "rule_hypothesis": {
+            "type": "string",
+            "description": "Compact statement of the rule inferred by this branch."
+          },
+          "evidence": {
+            "type": "string",
+            "description": "One to three short sentences citing why the branch supports its candidate answer."
+          },
+          "candidate_answer": {
+            "type": "string",
+            "description": "This branch's exact candidate answer, formatted like the benchmark answer."
+          },
+          "confidence": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 1,
+            "description": "Self-estimated confidence for this branch."
+          }
+        },
+        "required": [
+          "branch_id",
+          "strategy",
+          "rule_hypothesis",
+          "evidence",
+          "candidate_answer",
+          "confidence"
+        ]
+      }
+    },
+    "consensus": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "selected_answer": {
+          "type": "string",
+          "description": "Consensus-selected final answer. Must equal final_answer."
+        },
+        "agreement": {
+          "type": "string",
+          "enum": ["unanimous", "majority", "tie_break", "uncertain"],
+          "description": "How the branches agreed or how the answer was selected."
+        },
+        "selected_branch_ids": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Ids of branches that support the selected answer."
+        },
+        "resolution": {
+          "type": "string",
+          "description": "Brief explanation of why the consensus answer was selected."
+        }
+      },
+      "required": [
+        "selected_answer",
+        "agreement",
+        "selected_branch_ids",
+        "resolution"
+      ]
+    },
+    "confidence": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1,
+      "description": "Overall confidence in final_answer after branch aggregation."
+    }
+  },
+  "required": [
+    "final_answer",
+    "branches",
+    "consensus",
+    "confidence"
+  ]
+}

@@ -1,0 +1,51 @@
+[{"stream_name":"stderr","time":4.753136463,"data":"0.00s - Debugger warning: It seems that frozen modules are being used, which may\n"}
+,{"stream_name":"stderr","time":4.7531575230000005,"data":"0.00s - make the debugger miss breakpoints. Please pass -Xfrozen_modules=off\n"}
+,{"stream_name":"stderr","time":4.753159263,"data":"0.00s - to python to disable frozen modules.\n"}
+,{"stream_name":"stderr","time":4.753160403,"data":"0.00s - Note: Debugging will proceed. Set PYDEVD_DISABLE_FILE_VALIDATION=1 to disable this validation.\n"}
+,{"stream_name":"stderr","time":5.114595972,"data":"0.00s - Debugger warning: It seems that frozen modules are being used, which may\n"}
+,{"stream_name":"stderr","time":5.114618812,"data":"0.00s - make the debugger miss breakpoints. Please pass -Xfrozen_modules=off\n"}
+,{"stream_name":"stderr","time":5.114621252,"data":"0.00s - to python to disable frozen modules.\n"}
+,{"stream_name":"stderr","time":5.114622662,"data":"0.00s - Note: Debugging will proceed. Set PYDEVD_DISABLE_FILE_VALIDATION=1 to disable this validation.\n"}
+,{"stream_name":"stdout","time":6.139674081,"data":"Found Triton wheels: ['/kaggle/input/nemotron-packages/packages/triton-3.6.0-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl']\n"}
+,{"stream_name":"stdout","time":6.590834185,"data":"Processing /kaggle/input/nemotron-packages/packages/triton-3.6.0-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl\n"}
+,{"stream_name":"stdout","time":6.792083196,"data":"Processing /kaggle/input/nemotron-packages/packages/triton-3.6.0-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl\n"}
+,{"stream_name":"stdout","time":8.798876552,"data":"Installing collected packages: triton\n"}
+,{"stream_name":"stdout","time":9.000089613,"data":"Installing collected packages: triton\n"}
+,{"stream_name":"stdout","time":10.95455726,"data":"Successfully installed triton-3.6.0\n"}
+,{"stream_name":"stdout","time":11.155958761,"data":"Successfully installed triton-3.6.0\n"}
+,{"stream_name":"stdout","time":11.198703214,"data":"Triton installed from: /kaggle/input/nemotron-packages/packages/triton-3.6.0-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl\n"}
+,{"stream_name":"stdout","time":11.198710444,"data":"Warning: ptxas-blackwell not found, triton may not work correctly\n"}
+,{"stream_name":"stdout","time":11.816967223,"data":"Found mamba wheels: ['/kaggle/input/nemotron-packages/mamba_ssm-2.3.1+cu12torch2.10cxx11abiTRUE-cp312-cp312-linux_x86_64.whl']\n"}
+,{"stream_name":"stdout","time":11.816981553,"data":"Found causal-conv1d wheels: ['/kaggle/input/nemotron-packages/causal_conv1d-1.6.1+cu12torch2.10cxx11abiTRUE-cp312-cp312-linux_x86_64.whl']\n"}
+,{"stream_name":"stdout","time":13.028542639,"data":"Python: 3.12.12 (main, Oct 10 2025, 08:52:57) [GCC 11.4.0]\n"}
+,{"stream_name":"stdout","time":13.028560399,"data":"Torch: 2.10.0+cpu\n"}
+,{"stream_name":"stdout","time":13.028562879,"data":"CUDA available: False\n"}
+,{"stream_name":"stderr","time":13.447816485,"data":"Traceback (most recent call last):\n"}
+,{"stream_name":"stderr","time":13.447828415,"data":"  File \"\u003cstring\u003e\", line 1, in \u003cmodule\u003e\n"}
+,{"stream_name":"stderr","time":13.447831445,"data":"  File \"/usr/local/lib/python3.12/dist-packages/papermill/execute.py\", line 131, in execute_notebook\n"}
+,{"stream_name":"stderr","time":13.447862575,"data":"    raise_for_execution_errors(nb, output_path)\n"}
+,{"stream_name":"stderr","time":13.447878575,"data":"  File \"/usr/local/lib/python3.12/dist-packages/papermill/execute.py\", line 251, in raise_for_execution_errors\n"}
+,{"stream_name":"stderr","time":13.447919795,"data":"    raise error\n"}
+,{"stream_name":"stderr","time":13.447949395,"data":"papermill.exceptions.PapermillExecutionError: \n"}
+,{"stream_name":"stderr","time":13.447966475,"data":"---------------------------------------------------------------------------\n"}
+,{"stream_name":"stderr","time":13.447967865,"data":"Exception encountered at \"In [2]\":\n"}
+,{"stream_name":"stderr","time":13.447969175,"data":"---------------------------------------------------------------------------\n"}
+,{"stream_name":"stderr","time":13.447970585,"data":"RuntimeError                              Traceback (most recent call last)\n"}
+,{"stream_name":"stderr","time":13.447971845,"data":"/tmp/ipykernel_64/2745131930.py in \u003ccell line: 0\u003e()\n"}
+,{"stream_name":"stderr","time":13.447973315,"data":"     13 \n"}
+,{"stream_name":"stderr","time":13.447974605,"data":"     14 if not torch.cuda.is_available():\n"}
+,{"stream_name":"stderr","time":13.447975955,"data":"---\u003e 15     raise RuntimeError(\"GPU runtime required\")\n"}
+,{"stream_name":"stderr","time":13.447977395,"data":"     16 \n"}
+,{"stream_name":"stderr","time":13.447978595,"data":"     17 subprocess.run(\n"}
+,{"stream_name":"stderr","time":13.447979805,"data":"\n"}
+,{"stream_name":"stderr","time":13.447981095,"data":"RuntimeError: GPU runtime required\n"}
+,{"stream_name":"stderr","time":13.447982785,"data":"\n"}
+,{"stream_name":"stderr","time":14.574102045,"data":"/usr/local/lib/python3.12/dist-packages/mistune.py:435: SyntaxWarning: invalid escape sequence '\\|'\n"}
+,{"stream_name":"stderr","time":14.574119925,"data":"  cells[i][c] = re.sub('\\\\\\\\\\|', '|', cell)\n"}
+,{"stream_name":"stderr","time":14.66373511,"data":"/usr/local/lib/python3.12/dist-packages/nbconvert/filters/filter_links.py:36: SyntaxWarning: invalid escape sequence '\\_'\n"}
+,{"stream_name":"stderr","time":14.6637423,"data":"  text = re.sub(r'_', '\\_', text) # Escape underscores in display text\n"}
+,{"stream_name":"stderr","time":14.964817413,"data":"[NbConvertApp] Converting notebook __notebook__.ipynb to notebook\n"}
+,{"stream_name":"stderr","time":15.103802338,"data":"[NbConvertApp] Writing 25491 bytes to __notebook__.ipynb\n"}
+,{"stream_name":"stderr","time":16.213801265,"data":"[NbConvertApp] Converting notebook __notebook__.ipynb to html\n"}
+,{"stream_name":"stderr","time":16.623516955,"data":"[NbConvertApp] Writing 344024 bytes to __results__.html\n"}
+]
