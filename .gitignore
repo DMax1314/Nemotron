@@ -1,0 +1,9 @@
+# Developer local files
+.local/
+
+# macOS system files
+.DS_Store
+
+# Common IDE (PyCharm, VSCode, etc.) configuration files
+.idea/
+.vscode/
