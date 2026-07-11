@@ -21,14 +21,9 @@ This challenge **started on March 16, 2026**, and **ended on June 22, 2026**.
 [nemotron-challenge-page]: https://www.kaggle.com/competitions/nvidia-nemotron-model-reasoning-challenge
 [vllm]: https://docs.vllm.ai/en/stable/
 
-#### Synthetic Data Generation
-Goal & Why: In order to improve the reasoning ability of solving `SYMBOL` puzzle. We try to use generative AI to enhance the puzzle. 
-Challenge: 1. Choose the right LLM model 2. The speed of generating the answer of `SYMBOL` puzzle, each puzzle takes 30 min to generate the answer.
-Process:
-We try claude, codex, deepseek, GPT pro to solve the same `SYMBOL` puzzle, then find that GPT pro has the highest accuracy rate.
-We generate the synthetic data for the puzzle type `SYMBOL` using GPT pro. 
 
-## Synthetic Data Generation
+
+#### Synthetic Data Generation
 
 To improve the model’s reasoning ability on `SYMBOL` puzzles, we use generative AI to expand the existing dataset with high-quality synthetic examples. A key challenge in this process was selecting the most suitable large language model. To make an informed choice, we evaluated Claude, Codex, DeepSeek, and GPT Pro on the same set of SYMBOL puzzles and compared their solution accuracy. GPT Pro achieved the highest accuracy among the models tested and was therefore selected for synthetic data generation. Specifically, GPT-5.5 Pro was used to generate the final dataset. Using the original puzzles as seed data, we instruct the model to generate new puzzles that follow the same style, structure, difficulty, and answer format while avoiding duplicates and ambiguous transformation rules. Each generated sample contains a unique identifier, a self-contained puzzle prompt, a concise final answer, and a complete, externally readable explanation of the reasoning process. The generation prompt also requires the model to validate the consistency between each answer and its reasoning, ensure diversity across transformation-rule types, and produce a correctly formatted CSV containing exactly 1,000 high-quality synthetic puzzles. The exact prompt used for generation is shown below:
 
