@@ -1,0 +1,11 @@
+# Python cache files
+/__pycache__/
+
+# Data files; should be downloaded from Kaggle
+train.csv
+test.csv
+
+# Model files, adapters, output, and so on
+models/
+trained-adapter/
+output/
