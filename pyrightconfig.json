@@ -1,0 +1,8 @@
+{
+  "__comment__": "Pyright configuration file",
+  "venvPath": ".",
+  "venv": ".venv",
+  "typeCheckingMode": "basic",
+  "extraPaths": ["src/nemotron"],
+  "enableReachabilityAnalysis": false
+}
