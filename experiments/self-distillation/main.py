@@ -5,9 +5,8 @@
 #
 #     Nemotron 3 Nano 30B A3B BF16
 #
-#
 # =============================================================================
-# Because vLLM is not installabl on macOS, we use
+# Because vLLM is not installabl on macOS, we use an inline comment
 # `pyright: ignore[reportMissingImports]` to suppress the import errors given by
 # pyright in this script.
 

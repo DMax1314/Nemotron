@@ -215,11 +215,42 @@ Without any question, this is the hardest type of puzzle among all.
 
 ## Experiments
 
-### Self-distillation
+### Resolver-Based Reasoning Generation
+
+[reserved]
+
+### Self-Distillation
+
+Self-distillation is a type of knowledge distillation in which the teacher and the student are the same model. Some recent research shows that iterative self-distillation can improve a model's reasoning ability [[1], [2]]. However, research also shows that self-distillation can shorten responses while degrading performance on mathematical reasoning [[3]].
+
+We attempted to improve the accuracy of the Nemotron model on top of the RBRG adapter. We created an [automation script](experiments/self-distillation/main.py) that implements self-distillation. It performs the following steps in sequence:
+
+1. Parse the input arguments and build a configuration object.
+2. Download the Nemotron model from Kaggle if it doesn't already exist.
+3. Download the [RBRG adapter][rbrg-adapter] from Kaggle if it doesn't already exist.
+4. Load the training dataset into memory.
+5. Create a vLLM instance with the RBRG LoRA adapter.
+6. Iterate over the prompts in the training set and generate rollouts (LLM completions) for each prompt. More specifically, we append the following instruction to each prompt:
+   ```
+   Please put your final answer inside `\boxed{}`. For example: `\boxed{your answer}`
+   ```
+   and have the Nemotron model generate 3 outputs at each of three different temperatures (`1.2`, `1.5`, and `1.8`). The rollout results are saved so that the program can resume after an interruption.
+7. Load all rollouts into memory. Print the rollout accuracy broken down by puzzle type and by temperature.
+8. Build the self-distillation dataset. Specifically, the script iterates over all per-prompt results. For each per-prompt result, it collects the booleans indicating whether each rollout is correct. If all rollouts are correct or all are incorrect, we skip the prompt without creating a self-distillation record. This is inspired by DAPO ([4]), where such cases are considered to carry little preference signal, and the model cannot learn much from them. If there is at least one correct rollout, we check whether the majority rollout is correct. If so, we check whether any other rollouts give the correct answer. If they do, we rule out all the majority rollouts and adopt the correct rollout with the shortest rollout.
+
+During the challenge, we found that the "Symbol" type of puzzle requires brute-force enumeration, so the model needs to try many combinations and therefore generate many tokens. If the model produces too many filler tokens (e.g., "we can see that", "it is not hard to find"), it may fail to reach the correct answer within the generation limit, which is 7680 tokens in this challenge. For this reason, we encourage the fine-tuned model to generate a shorter completion.
+
+Over the course of experimenting with the script, we found that "majority rollouts" usually don't exist: when the temperature is above 1 and the reasoning content is long, identical completions rarely appear.
+
+Since we didn't have enough compute, we only used this script to generate rollouts for the "Symbol" and "Bit" puzzles.
+
+Unfortunately, we ended up with very few self-distillation records. Our analysis showed that simply raising the temperature doesn't make the fine-tuned Nemotron model generate more creative reasoning or arrive at the correct answer. In other words, the puzzles it couldn't solve before, it still can't solve.
+
+But from this experiment, we collected the IDs of prompts that the fine-tuned Nemotron model still couldn't solve, which were used in the [on-policy distillation experiment](#on-policy-distillation-experiment).
 
 ### Synthetic Data Generation
 
-To improve the model’s reasoning ability on `SYMBOL` puzzles, we use generative AI to expand the existing dataset with high-quality synthetic examples. A key challenge in this process was selecting the most suitable large language model. To make an informed choice, we evaluated Claude, Codex, DeepSeek, and GPT Pro on the same set of SYMBOL puzzles and compared their solution accuracy. GPT Pro achieved the highest accuracy among the models tested and was therefore selected for synthetic data generation. Specifically, GPT-5.5 Pro was used to generate the final dataset. Using the original puzzles as seed data, we instruct the model to generate new puzzles that follow the same style, structure, difficulty, and answer format while avoiding duplicates and ambiguous transformation rules. Each generated sample contains a unique identifier, a self-contained puzzle prompt, a concise final answer, and a complete, externally readable explanation of the reasoning process. The generation prompt also requires the model to validate the consistency between each answer and its reasoning, ensure diversity across transformation-rule types, and produce a correctly formatted CSV containing exactly 1,000 high-quality synthetic puzzles. The exact prompt used for generation is shown below:
+To improve the model’s reasoning ability on `Symbol` puzzles, we use generative AI to expand the existing dataset with high-quality synthetic examples. A key challenge in this process was selecting the most suitable large language model. To make an informed choice, we evaluated Claude, Codex, DeepSeek, and GPT Pro on the same set of SYMBOL puzzles and compared their solution accuracy. GPT Pro achieved the highest accuracy among the models tested and was therefore selected for synthetic data generation. Specifically, GPT-5.5 Pro was used to generate the final dataset. Using the original puzzles as seed data, we instruct the model to generate new puzzles that follow the same style, structure, difficulty, and answer format while avoiding duplicates and ambiguous transformation rules. Each generated sample contains a unique identifier, a self-contained puzzle prompt, a concise final answer, and a complete, externally readable explanation of the reasoning process. The generation prompt also requires the model to validate the consistency between each answer and its reasoning, ensure diversity across transformation-rule types, and produce a correctly formatted CSV containing exactly 1,000 high-quality synthetic puzzles. The exact prompt used for generation is shown below:
 
 > You are given an attached CSV file containing seed puzzles. The CSV has columns such as `id`, `prompt`, and `answer`. The puzzles are symbolic transformation puzzles: each prompt provides several example input-output equations, and the solver must infer the hidden transformation rule and apply it to a new input.
 >
@@ -316,3 +347,8 @@ To improve the model’s reasoning ability on `SYMBOL` puzzles, we use generativ
 
 [nemotron-challenge-page]: https://www.kaggle.com/competitions/nvidia-nemotron-model-reasoning-challenge
 [vllm]: https://docs.vllm.ai/en/stable/
+[1]: https://arxiv.org/abs/2601.18734
+[2]: https://arxiv.org/abs/2605.12400
+[3]: https://arxiv.org/abs/2605.28791
+[rbrg-adapter]: https://www.kaggle.com/datasets/leegongman/0-86-adapter
+[4]: https://arxiv.org/abs/2503.14476
