@@ -7,3 +7,9 @@
 # Common IDE (PyCharm, VSCode, etc.) configuration files
 .idea/
 .vscode/
+
+# Python cache files (bytecode, compiled files, etc.)
+__pycache__/
+
+# data files
+/data/
