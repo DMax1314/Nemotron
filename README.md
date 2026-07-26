@@ -77,7 +77,7 @@ $$
 
 In this challenge, we are provided with a training set (a `train.csv` file) and a test set (a `test.csv` file). The columns of the training set are `id`, `prompt`, and `answer`, while the test set has only `id` and `prompt`. The training set has 9500 examples. In this document, an **example** refers to the combination of a prompt and its corresponding answer. Because the test set has only prompts without answers, we didn't use it in this project.
 
-The `prompt` of every example is a math problem. To avoid any confusion, we refer to a `prompt` value as a **puzzle** in this document. We found that there are six types of puzzles in the training set. The type of a puzzle can be inferred from keywords in its first sentence. The following is the implementation we used to infer the puzzle type:
+The `prompt` of every example is a math problem. To avoid any confusion, we refer to a `prompt` value as a **puzzle** in this document. We found that there are six types of puzzles in the training set. The type of the puzzle can be inferred from keywords in its first sentence. The following is the implementation we used to infer the puzzle type:
 
 ```python
 def infer_puzzle_type(prompt: str) -> PuzzleType:
@@ -123,7 +123,7 @@ We are asked to find a combination of bit operations that transforms the given e
 
 This puzzle is easy to solve by brute force. There are ten bit operations to consider (both bit shifts and rotations come in two directions). However, we don't know how many times these operations are applied. In addition, bit shifts and rotations on 8-bit values take a parameter indicating the number of positions to shift or rotate, which makes the brute-force search even harder.
 
-This is the *second hardest puzzle type* for Nemotron to solve.
+This is the _second-hardest puzzle type_ for Nemotron to solve.
 
 #### 2. Type `Gravity`
 
@@ -207,9 +207,9 @@ In Alice's Wonderland, a secret set of transformation rules is applied to equati
 Now, determine the result for: [[-!'
 ```
 
-In this type of puzzle, we need to find the transformation rules of some characters and some binary operations. After observing the shape of more of these types of puzzles, the `+`, `-`, `*`, `/` on the left hand side of the equation are binary operators, but they may not perform as they is. For example, a + operator can do subtraction. The answer to this puzzle is `@&`.
+In this type of puzzle, we need to find the transformation rules of some characters and some binary operations. After observing the shape of more of these types of puzzles, the `+`, `-`, `*`, `/` on the left-hand side of the equation are binary operators, but they may not perform as they are. For example, a + operator can do subtraction. The answer to this puzzle is `@&`.
 
-The hardest part of this type of puzzles is guessing the digits mapped by the symbols that are not operators. It turns out that we can only do brute force to solve them, and it takes some time for rule-based solver to find the answer. A not fine-tuned Nemotron model can only solve one to two puzzles in the 1555 Symbol puzzles. 
+The hardest part of this type of puzzles is guessing the digits mapped by the symbols that are not operators. It turns out that we can only do brute force to solve them, and it takes some time for rule-based solver to find the answer. A not fine-tuned Nemotron model can only solve one to two puzzles in the 1555 Symbol puzzles.
 
 Without any question, this is the hardest type of puzzle among all.
 
@@ -221,7 +221,8 @@ Without any question, this is the hardest type of puzzle among all.
 
 ### Self-Distillation
 
-Self-distillation is a type of knowledge distillation in which the teacher and the student are the same model. Some recent research shows that iterative self-distillation can improve a model's reasoning ability [[1], [2]]. However, research also shows that self-distillation can shorten responses while degrading performance on mathematical reasoning [[3]].
+Self-distillation is a type of knowledge distillation in which the teacher and the student are the same model. Some recent research shows that iterative self-distillation can improve a model's reasoning ability [[1], [2]]. However, research also shows that self-distillation can shorten responses while degrading performance on mathematical
+reasoning \[[3]\].
 
 We attempted to improve the accuracy of the Nemotron model on top of the RBRG adapter. We created an [automation script](experiments/self-distillation/main.py) that implements self-distillation. It performs the following steps in sequence:
 
@@ -236,17 +237,20 @@ We attempted to improve the accuracy of the Nemotron model on top of the RBRG ad
    ```
    and have the Nemotron model generate 3 outputs at each of three different temperatures (`1.2`, `1.5`, and `1.8`). The rollout results are saved so that the program can resume after an interruption.
 7. Load all rollouts into memory. Print the rollout accuracy broken down by puzzle type and by temperature.
-8. Build the self-distillation dataset. Specifically, the script iterates over all per-prompt results. For each per-prompt result, it collects the booleans indicating whether each rollout is correct. If all rollouts are correct or all are incorrect, we skip the prompt without creating a self-distillation record. This is inspired by DAPO ([4]), where such cases are considered to carry little preference signal, and the model cannot learn much from them. If there is at least one correct rollout, we check whether the majority rollout is correct. If so, we check whether any other rollouts give the correct answer. If they do, we rule out all the majority rollouts and adopt the correct rollout with the shortest rollout.
+8. Build the self-distillation dataset. Specifically, the script iterates over all per-prompt results. For each per-prompt result, it collects the booleans indicating whether each rollout is correct. If all rollouts are correct or all are incorrect, we skip the prompt without creating a self-distillation record. This is inspired by DAPO \[[4]\], where such cases are considered to carry little preference signal, and the model cannot learn much from them. If there is at least one correct rollout, we check whether the majority rollout is correct. If so, we check whether any other rollouts give the correct answer. If they do, we rule out all the majority rollouts and adopt the correct rollout with the shortest rollout.
 
-During the challenge, we found that the "Symbol" type of puzzle requires brute-force enumeration, so the model needs to try many combinations and therefore generate many tokens. If the model produces too many filler tokens (e.g., "we can see that", "it is not hard to find"), it may fail to reach the correct answer within the generation limit, which is 7680 tokens in this challenge. For this reason, we encourage the fine-tuned model to generate a shorter completion.
+Here's some additional explanation for step 8: For puzzles that the Nemotron model can easily solve, it may generate nine rationales that all arrive at the correct answer. In this case, even if we select the best rationales for Nemotron to learn from, the model won't improve much. For puzzles that Nemotron struggles with, it generates nine rationales that all arrive at the wrong answer. In this case, there is nothing for Nemotron to learn from, so we have to discard these puzzles. For the remaining puzzles, the rollouts are a mix of correct and incorrect ones. Among the correct rationales, we pick the shorter ones and add them to the final self-distillation dataset.
+
+During the challenge, we found that the "Symbol" and "Bit" puzzle types require brute-force enumeration, so the model needs to try many combinations and therefore generate many tokens. If the model produces too many filler tokens (e.g., "we can see that," "it is not hard to find"), it may fail to reach the correct answer within the generation limit, which is 7,680 tokens in this challenge. For this reason, we encourage the fine-tuned model to generate shorter completions.
 
 Over the course of experimenting with the script, we found that "majority rollouts" usually don't exist: when the temperature is above 1 and the reasoning content is long, identical completions rarely appear.
 
 Since we didn't have enough compute, we only used this script to generate rollouts for the "Symbol" and "Bit" puzzles.
 
-Unfortunately, we ended up with very few self-distillation records. Our analysis showed that simply raising the temperature doesn't make the fine-tuned Nemotron model generate more creative reasoning or arrive at the correct answer. In other words, the puzzles it couldn't solve before, it still can't solve.
+Unfortunately, we ended up with very few self-distillation records. Increasing the temperature didn't lead to higher accuracy on hard puzzles; instead, it got questions wrong that it originally could have gotten right, decreasing the accuracy. Also, only 13 of the total 3149 puzzles had at least one correct rationale and one incorrect rationale. This indicates that simply increasing the temperature cannot magically make the model generate more correct rationales for hard puzzles. But from this experiment, we collected the IDs of prompts that the fine-tuned Nemotron model still couldn't solve, which were used in the [on-policy distillation experiment](#on-policy-distillation-experiment).
 
-But from this experiment, we collected the IDs of prompts that the fine-tuned Nemotron model still couldn't solve, which were used in the [on-policy distillation experiment](#on-policy-distillation-experiment).
+> [!INFO]
+> The results of the self-distillation experiment can be found on [Hugging Face][self-distillation-results].
 
 ### Synthetic Data Generation
 
@@ -316,7 +320,7 @@ To improve the model’s reasoning ability on `Symbol` puzzles, we use generativ
 > - Avoid overly trivial puzzles where the answer is copied directly from one example.
 > - Avoid ambiguous rules where multiple answers could fit the examples.
 > - Vary the transformation rules across the dataset.
-> - Include a mix of rule types, such as character substitution, deletion, insertion, reversal, position-based selection, adjacent-pair mapping, digit arithmetic, symbol mapping, and multi-step transformations.
+> - Include a mix of rule types, such as character substitution, deletion, insertion, reversal, position-based selection, adjacent-pair mapping, digit arithmetic, symbol mapping, and multistep transformations.
 > - Ensure the examples in each puzzle are sufficient to support the intended rule.
 > - Verify that each `answer` matches the rule described in `process`.
 >
@@ -343,7 +347,7 @@ To improve the model’s reasoning ability on `Symbol` puzzles, we use generativ
 
 ### On-policy Distillation
 
-<!-- TO DOCUEMENT WRITERS: Please keep these references at the end of the document. -->
+<!-- TO DOCUMENT WRITERS: Please keep these references at the end of the document. -->
 
 [nemotron-challenge-page]: https://www.kaggle.com/competitions/nvidia-nemotron-model-reasoning-challenge
 [vllm]: https://docs.vllm.ai/en/stable/
@@ -352,3 +356,4 @@ To improve the model’s reasoning ability on `Symbol` puzzles, we use generativ
 [3]: https://arxiv.org/abs/2605.28791
 [rbrg-adapter]: https://www.kaggle.com/datasets/leegongman/0-86-adapter
 [4]: https://arxiv.org/abs/2503.14476
+[self-distillation-results]: https://huggingface.co/datasets/FindAJobJMR/rollout-results/
