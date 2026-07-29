@@ -228,7 +228,7 @@ We attempted to improve the accuracy of the Nemotron model on top of the RBRG ad
 
 1. Parse the input arguments and build a configuration object.
 2. Download the Nemotron model from Kaggle if it doesn't already exist.
-3. Download the [RBRG adapter][rbrg-adapter] from Kaggle if it doesn't already exist.
+3. Download the [RBRG adapter][0.86-adapter] from Kaggle if it doesn't already exist.
 4. Load the training dataset into memory.
 5. Create a vLLM instance with the RBRG LoRA adapter.
 6. Iterate over the prompts in the training set and generate rollouts (LLM completions) for each prompt. More specifically, we append the following instruction to each prompt:
@@ -347,6 +347,23 @@ To improve the model’s reasoning ability on `Symbol` puzzles, we use generativ
 
 ### On-policy Distillation
 
+On-policy distillation (OPD) is knowledge distillation in which the training examples come from the student's own rollouts rather than the teacher's. In OPD, there is a student model and a teacher model: the student generates a completion (a rollout) for a given prompt, the teacher grades it, and the student learns from the teacher's feedback (or signal). Some common variants, categorized by the form of the teacher's signal, are as follows:
+
+- **Full token distributions**: The teacher provides a distribution over the vocabulary for every token in the completion sequence. This method applies only when the student and teacher models use the same tokenizer.
+- **Corrected trajectories**: The teacher rewrites the student's rollout. The student then trains with cross-entropy on the corrected version.
+- **Scalar reward or preference**: The teacher assigns a scalar representing the reward or preference for each completion. Reinforcement learning is then used to fine-tune the student based on that scalar.
+- **Sequence-level selection**: The student samples N complete rollouts. The teacher scores them and keeps only those above a threshold. The student is then trained with cross-entropy on the survivors, new rollouts are sampled from the updated student, and the process repeats.
+
+Theoretically speaking, the self-distillation mentioned above is a special case of OPD in which the student and the teacher are the same model. In this experiment, we use ChatGPT 5 (Pro thinking) as the teacher and have it provide corrected trajectories for puzzles that the Nemotron model cannot solve.
+
+In this experiment, we collected 10 prompts that the Nemotron model (with the RBRG adapter) failed to solve and stored them in a CSV file. We then had ChatGPT 5 read each original completion, keep the correct parts, revise the incorrect parts, and generate a corrected trajectory, which was then used to fine-tune the Nemotron model. The correct trajectories are saved in [data_public/processed/correct_trajectories.csv](data_public/processed/correct_trajectories.csv).
+
+Unfortunately, although the trajectories provided by the teacher model arrived at correct answers, they didn't improve the accuracy of the Nemotron model. This may be due to an insufficient number of training samples.
+
+## What We Learned
+
+[reserved]
+
 <!-- TO DOCUMENT WRITERS: Please keep these references at the end of the document. -->
 
 [nemotron-challenge-page]: https://www.kaggle.com/competitions/nvidia-nemotron-model-reasoning-challenge
@@ -354,6 +371,6 @@ To improve the model’s reasoning ability on `Symbol` puzzles, we use generativ
 [1]: https://arxiv.org/abs/2601.18734
 [2]: https://arxiv.org/abs/2605.12400
 [3]: https://arxiv.org/abs/2605.28791
-[rbrg-adapter]: https://www.kaggle.com/datasets/leegongman/0-86-adapter
+[0.86-adapter]: https://www.kaggle.com/datasets/leegongman/0-86-adapter
 [4]: https://arxiv.org/abs/2503.14476
 [self-distillation-results]: https://huggingface.co/datasets/FindAJobJMR/rollout-results/
