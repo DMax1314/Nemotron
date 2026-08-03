@@ -1325,6 +1325,16 @@ def save_self_distillation_dataset(
 
 
 def main() -> int:
+    """Main entry point of the script.
+
+    This function orchestrates the entire workflow of the script, including
+    configuration setup, model and tokenizer loading, rollout generation,
+    analysis, and self-distillation dataset construction and saving.
+
+    Returns:
+        An integer exit code indicating the success or failure of the script.
+    """
+
     config = build_config(parse_args())
     print_config(config)
     download_model_from_kaggle(config)
@@ -1355,7 +1365,7 @@ def main() -> int:
 
 
 if __name__ == '__main__':
-    # Required for Python's spawn start method.  Without this guard, spawned
+    # Required for Python's spawn start method. Without this guard, spawned
     # workers re-import this script and would execute `main()` recursively.
     import multiprocessing as mp
 
