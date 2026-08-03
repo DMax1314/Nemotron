@@ -162,7 +162,6 @@ def show(
     """
 
     train_path = Path('data/raw/train.csv')
-
     if not file_exists(train_path):
         return echo(
             'Data files not found. Please run `nemotron data fetch` to '
@@ -255,3 +254,41 @@ def extract(
         train_df = cast(pd.DataFrame, train_df).head(limit)
 
     save_csv(cast(pd.DataFrame, train_df), output_file)
+
+
+@app.command(name='list')
+def list_all_prompt_ids(
+    puzzle_types_str=Option(
+        None,
+        '--types',
+        '-t',
+        help='Filter examples by puzzle types; separated with comma.',
+    ),
+    limit=Option(
+        -1, '--limit', '-l', help='Limit the number of examples to extract.'
+    ),
+) -> None:
+    """Display a list of prompt IDs in the training set file."""
+
+    train_path = Path(f'{RAW_DATA_DIR}/train.csv')
+    if not file_exists(train_path):
+        return echo(
+            'Data files not found. Please run `nemotron data fetch` to '
+            'download the datasets.'
+        )
+
+    train_df = load_csv(train_path)
+    train_df['type'] = train_df['prompt'].apply(infer_puzzle_type)
+
+    # Filter by puzzle types if specified.
+    if puzzle_types_str:
+        puzzle_types: list[str] = puzzle_types_str.split(',')
+        train_df = train_df[train_df['type'].isin(puzzle_types)]
+
+    # Limit the number of examples if specified.
+    limit = int(limit)
+    if limit > 0:
+        train_df = cast(pd.DataFrame, train_df).head(limit)
+
+    for _, row in train_df.iterrows():
+        print(row['id'])
