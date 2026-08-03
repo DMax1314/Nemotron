@@ -5,8 +5,9 @@ class Generator(ABC):
     """Represents a rule-based reasoning content generator (RRCG) for a given
     puzzle. For simplicity, the class name is just "Generator".
 
-    Given a puzzle, the generator first solves the puzzle and then generates
-    reasoning content based on the solution.
+    Given a puzzle, the generator first solves it and then produces a
+    self-contained explanation of that solution. The answer is returned
+    separately so callers can use it without extracting it from the prose.
 
     Every puzzle in this challenge is solvable. Some puzzles may be solved
     within several steps, others may require brute-force search.
@@ -25,14 +26,14 @@ class Generator(ABC):
         self.puzzle: str = puzzle
 
     @abstractmethod
-    def generate_reasoning_content(self) -> str:
-        """Generates reasoning content for the given puzzle.
+    def generate_reasoning_content(self) -> tuple[str, str]:
+        """Solve the puzzle and generate its reasoning content.
 
-        Implementation of this method should solve the puzzle and generate
-        a complete reasoning content in natural language.
+        Implementations must derive an answer and a complete natural-language
+        explanation that is consistent with that answer.
 
         Returns:
-            A string containing the reasoning content generated for the puzzle.
+            A pair ``(answer, reasoning_content)``. ``answer`` is the exact
+            answer string, while ``reasoning_content`` contains the complete
+            explanation and its final boxed answer marker.
         """
-
-        pass
