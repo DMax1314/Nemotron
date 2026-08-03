@@ -29,8 +29,15 @@ class TestRuleBasedReasoningContentGenerator(unittest.TestCase):
         training_data = load_csv(Path(RAW_DATA_DIR) / 'train.csv')
         failures: list[str] = []
 
+        num_rows: int = len(training_data)
+        i: int = 0
+        print()
         for row in training_data.itertuples(index=False):
             row = cast(Any, row)
+
+            i += 1
+            print(f'[{i}/{num_rows}] Checking {row.id}...')
+
             puzzle_type = infer_puzzle_type(row.prompt)
             try:
                 answer, _ = RuleBasedReasoningContentGenerator(
