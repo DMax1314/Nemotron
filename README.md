@@ -1,5 +1,9 @@
 # NVIDIA Nemotron Model Reasoning Challenge
 
+## Final Result of Our Team
+
+[reserved]
+
 ## Background
 
 The [NVIDIA Nemotron Model Reasoning Challenge][nemotron-challenge-page] is an open online challenge in which competitors are required to fine-tune **Nemotron-3-Nano-30B** (hereafter referred to as the "Nemotron model"), a large language model, so that it can better reason about and answer a series of mathematical problems.
@@ -15,6 +19,48 @@ The vLLM parameters for the evaluation are specified. The significant parameters
 This challenge **started on March 16, 2026**, and **ended on June 22, 2026**.
 
 ### The Nemotron-3-Nano-30B Model
+
+Nemotron-3-Nano-30B-A3B-BF16 is a large language model (LLM) trained from scratch by NVIDIA, and designed as a unified model for both reasoning and non-reasoning tasks. It responds to user queries and tasks by first generating a reasoning trace and then concluding with a final response.
+
+According to the [model description on Hugging Face][nemotron-model]:
+
+> The model employs a hybrid Mixture-of-Experts (MoE) architecture, consisting of 23 Mamba-2 and MoE layers, along with 6 Attention layers. Each MoE layer includes 128 experts plus 1 shared expert, with 6 experts activated per token. The model has 3.5B active parameters and 30B parameters in total.
+
+The Nemotron model is not a conventional stack of 52 Transformer blocks. NVIDIA counts each residual operation (i.e., Mamba, attention, or MoE) as an individual "layer".
+
+The exact arrangement shown in NVIDIA's architecture figure is
+
+```
+MEMEM*EMEMEM*EMEMEM*EMEMEM*EMEMEM*EMEMEMEM*EMEMEMEME
+```
+
+Here, `M` is a [Mamba-2][mamba-2] layer, `E` is a [MoE][moe] layer, and `A` is a grouped-query [self-attention][self-attention].
+
+The model activates six of the 128 routed experts in each MoE layer, along with one shared expert that is always active. As a result, roughly 5.42% of the stored parameters are activated for each token.
+
+| Component                    | Total Stored | Active per token |
+|------------------------------|--------------|------------------|
+| 23 MoE layers                | 29.842B      | 1.844B           |
+| 23 Mamba-2 layers            | 0.891B       | 0.891B           |
+| 6 attention layers           | 0.140B       | 0.140B           |
+| Output vocabulary projection | 0.352B       | 0.352B           |
+| Input token embeddings       | 0.352B       | 0.352B           |
+
+Because the model uses BF16 to store paraemters, each parameter occupies two bytes. The weight-storage is therefore:
+
+$$
+30 \text{B} \times 2 \text{bytes} = 60 \text{GB}.
+$$
+
+And the active parameters is
+
+$$
+3.5 \text{B} \times 2 \text{bytes} = 7 \text{GB}.
+$$
+
+#### Mixture of Experts (MoE)
+
+[reserved: explanation of MoE and how the one in Nemotorn differs]
 
 #### SVD Denoising and Truncation Principle for LoRA Weights
 
@@ -215,22 +261,200 @@ Without any question, this is the hardest type of puzzle among all.
 
 ## Experiments
 
-### Resolver-Based Reasoning Generation
+### Rule-based Reasoning Content Generation (RRCG)
 
-[reserved]
+At first, we considered using better reasoning models (e.g., ChatGPT, Gemini, and Claude) to generate correct reasoning content for all 9,500 examples in the training set. However, we would have had to automate the process using API calls, which would have cost us an arm and a leg. Even worse, after asking Claude to solve some puzzles, we found that it sometimes provided incorrect answers, which meant that the corresponding reasoning content was also incorrect.
+
+We found that all six types of puzzles can be solved step by step. Types such as `Gravity` and `Unit` require very few reasoning steps, while others require more. Types such as `Bit` and `Symbol` require brute force, resulting in many reasoning steps. Regardless, we can create a rule-based solver that solves each puzzle and produces the correct answer. This process requires no LLM and is deterministic.
+
+The rule-based reasoning content generator (RRCG) first solves a given puzzle using an algorithm. For each step, it generates a corresponding "reasoning statement" that describes the step. Finally, the RRCG joins all the reasoning statements together and returns them as the reasoning content.
+
+In this project, you can reproduce this process using the following command:
+
+```bash
+source env.sh && nemotron rrcg generate 00fdc0be
+```
+
+Here, `00fdc0be` is the ID of the following puzzle in the training set:
+
+```
+In Alice's Wonderland, a secret bit manipulation rule transforms 8-bit binary numbers. The transformation involves operations like bit shifts, rotations, XOR, AND, OR, NOT, and possibly majority or choice functions.
+
+Here are some examples of input -> output:
+01101111 -> 10111111
+01001110 -> 00111111
+01111101 -> 11111110
+10111111 -> 11111111
+01101011 -> 10111101
+00010101 -> 11011110
+11011111 -> 11111111
+
+Now, determine the output for: 10101111
+```
+
+The answer to this puzzle is `11111111`. RRCG solves the puzzle correctly and generates the following reasoning content:
+
+```
+Treat x as an eight-bit word. Shifts fill vacant positions with 0, rotations wrap around, and NOT flips every bit.
+
+Keep the examples in their given order. The required output vector is: 10111111 | 00111111 | 11111110 | 11111111 | 10111101 | 11011110 | 11111111.
+
+First enumerate every one-word operand (x, every nonzero shift and rotation, then NOT of each of those 29 words):
+x: 01101111 | 01001110 | 01111101 | 10111111 | 01101011 | 00010101 | 11011111
+SHL1(x): 11011110 | 10011100 | 11111010 | 01111110 | 11010110 | 00101010 | 10111110
+SHR1(x): 00110111 | 00100111 | 00111110 | 01011111 | 00110101 | 00001010 | 01101111
+ROL1(x): 11011110 | 10011100 | 11111010 | 01111111 | 11010110 | 00101010 | 10111111
+ROR1(x): 10110111 | 00100111 | 10111110 | 11011111 | 10110101 | 10001010 | 11101111
+SHL2(x): 10111100 | 00111000 | 11110100 | 11111100 | 10101100 | 01010100 | 01111100
+SHR2(x): 00011011 | 00010011 | 00011111 | 00101111 | 00011010 | 00000101 | 00110111
+ROL2(x): 10111101 | 00111001 | 11110101 | 11111110 | 10101101 | 01010100 | 01111111
+ROR2(x): 11011011 | 10010011 | 01011111 | 11101111 | 11011010 | 01000101 | 11110111
+SHL3(x): 01111000 | 01110000 | 11101000 | 11111000 | 01011000 | 10101000 | 11111000
+SHR3(x): 00001101 | 00001001 | 00001111 | 00010111 | 00001101 | 00000010 | 00011011
+ROL3(x): 01111011 | 01110010 | 11101011 | 11111101 | 01011011 | 10101000 | 11111110
+ROR3(x): 11101101 | 11001001 | 10101111 | 11110111 | 01101101 | 10100010 | 11111011
+SHL4(x): 11110000 | 11100000 | 11010000 | 11110000 | 10110000 | 01010000 | 11110000
+SHR4(x): 00000110 | 00000100 | 00000111 | 00001011 | 00000110 | 00000001 | 00001101
+ROL4(x): 11110110 | 11100100 | 11010111 | 11111011 | 10110110 | 01010001 | 11111101
+ROR4(x): 11110110 | 11100100 | 11010111 | 11111011 | 10110110 | 01010001 | 11111101
+SHL5(x): 11100000 | 11000000 | 10100000 | 11100000 | 01100000 | 10100000 | 11100000
+SHR5(x): 00000011 | 00000010 | 00000011 | 00000101 | 00000011 | 00000000 | 00000110
+ROL5(x): 11101101 | 11001001 | 10101111 | 11110111 | 01101101 | 10100010 | 11111011
+ROR5(x): 01111011 | 01110010 | 11101011 | 11111101 | 01011011 | 10101000 | 11111110
+SHL6(x): 11000000 | 10000000 | 01000000 | 11000000 | 11000000 | 01000000 | 11000000
+SHR6(x): 00000001 | 00000001 | 00000001 | 00000010 | 00000001 | 00000000 | 00000011
+ROL6(x): 11011011 | 10010011 | 01011111 | 11101111 | 11011010 | 01000101 | 11110111
+ROR6(x): 10111101 | 00111001 | 11110101 | 11111110 | 10101101 | 01010100 | 01111111
+SHL7(x): 10000000 | 00000000 | 10000000 | 10000000 | 10000000 | 10000000 | 10000000
+SHR7(x): 00000000 | 00000000 | 00000000 | 00000001 | 00000000 | 00000000 | 00000001
+ROL7(x): 10110111 | 00100111 | 10111110 | 11011111 | 10110101 | 10001010 | 11101111
+ROR7(x): 11011110 | 10011100 | 11111010 | 01111111 | 11010110 | 00101010 | 10111111
+NOT(x): 10010000 | 10110001 | 10000010 | 01000000 | 10010100 | 11101010 | 00100000
+NOT(SHL1(x)): 00100001 | 01100011 | 00000101 | 10000001 | 00101001 | 11010101 | 01000001
+NOT(SHR1(x)): 11001000 | 11011000 | 11000001 | 10100000 | 11001010 | 11110101 | 10010000
+NOT(ROL1(x)): 00100001 | 01100011 | 00000101 | 10000000 | 00101001 | 11010101 | 01000000
+NOT(ROR1(x)): 01001000 | 11011000 | 01000001 | 00100000 | 01001010 | 01110101 | 00010000
+NOT(SHL2(x)): 01000011 | 11000111 | 00001011 | 00000011 | 01010011 | 10101011 | 10000011
+NOT(SHR2(x)): 11100100 | 11101100 | 11100000 | 11010000 | 11100101 | 11111010 | 11001000
+NOT(ROL2(x)): 01000010 | 11000110 | 00001010 | 00000001 | 01010010 | 10101011 | 10000000
+NOT(ROR2(x)): 00100100 | 01101100 | 10100000 | 00010000 | 00100101 | 10111010 | 00001000
+NOT(SHL3(x)): 10000111 | 10001111 | 00010111 | 00000111 | 10100111 | 01010111 | 00000111
+NOT(SHR3(x)): 11110010 | 11110110 | 11110000 | 11101000 | 11110010 | 11111101 | 11100100
+NOT(ROL3(x)): 10000100 | 10001101 | 00010100 | 00000010 | 10100100 | 01010111 | 00000001
+NOT(ROR3(x)): 00010010 | 00110110 | 01010000 | 00001000 | 10010010 | 01011101 | 00000100
+NOT(SHL4(x)): 00001111 | 00011111 | 00101111 | 00001111 | 01001111 | 10101111 | 00001111
+NOT(SHR4(x)): 11111001 | 11111011 | 11111000 | 11110100 | 11111001 | 11111110 | 11110010
+NOT(ROL4(x)): 00001001 | 00011011 | 00101000 | 00000100 | 01001001 | 10101110 | 00000010
+NOT(ROR4(x)): 00001001 | 00011011 | 00101000 | 00000100 | 01001001 | 10101110 | 00000010
+NOT(SHL5(x)): 00011111 | 00111111 | 01011111 | 00011111 | 10011111 | 01011111 | 00011111
+NOT(SHR5(x)): 11111100 | 11111101 | 11111100 | 11111010 | 11111100 | 11111111 | 11111001
+NOT(ROL5(x)): 00010010 | 00110110 | 01010000 | 00001000 | 10010010 | 01011101 | 00000100
+NOT(ROR5(x)): 10000100 | 10001101 | 00010100 | 00000010 | 10100100 | 01010111 | 00000001
+NOT(SHL6(x)): 00111111 | 01111111 | 10111111 | 00111111 | 00111111 | 10111111 | 00111111
+NOT(SHR6(x)): 11111110 | 11111110 | 11111110 | 11111101 | 11111110 | 11111111 | 11111100
+NOT(ROL6(x)): 00100100 | 01101100 | 10100000 | 00010000 | 00100101 | 10111010 | 00001000
+NOT(ROR6(x)): 01000010 | 11000110 | 00001010 | 00000001 | 01010010 | 10101011 | 10000000
+NOT(SHL7(x)): 01111111 | 11111111 | 01111111 | 01111111 | 01111111 | 01111111 | 01111111
+NOT(SHR7(x)): 11111111 | 11111111 | 11111111 | 11111110 | 11111111 | 11111111 | 11111110
+NOT(ROL7(x)): 01001000 | 11011000 | 01000001 | 00100000 | 01001010 | 01110101 | 00010000
+NOT(ROR7(x)): 00100001 | 01100011 | 00000101 | 10000000 | 00101001 | 11010101 | 01000000
+
+Unary loop: compare all 58 vectors with the target. Exact matches: none.
+Binary loop: for each named operation, evaluate all 58 × 58 ordered operand pairs. Nonlisted pairs differ from the target vector.
+The loop order is left operand, right operand, then XOR, AND, OR, AND-NOT, OR-NOT, XOR-NOT.
+XOR: 3364 pairs tested; no exact match
+AND: 3364 pairs tested; no exact match
+OR: 3364 pairs tested; OR(ROR1(x), SHL2(x)), OR(SHL2(x), ROR1(x)), OR(SHL2(x), ROL7(x)), OR(ROL7(x), SHL2(x))
+AND-NOT: 3364 pairs tested; no exact match
+OR-NOT: 3364 pairs tested; OR-NOT(ROR1(x), NOT(SHL2(x))), OR-NOT(SHL2(x), NOT(ROR1(x))), OR-NOT(SHL2(x), NOT(ROL7(x))), OR-NOT(ROL7(x), NOT(SHL2(x)))
+XOR-NOT: 3364 pairs tested; no exact match
+
+The first exact formula in that loop order is:
+output = OR(ROR1(x), SHL2(x)).
+
+Verification against the supplied examples:
+01101111 -> 10111111; expected 10111111: match.
+01001110 -> 00111111; expected 00111111: match.
+01111101 -> 11111110; expected 11111110: match.
+10111111 -> 11111111; expected 11111111: match.
+01101011 -> 10111101; expected 10111101: match.
+00010101 -> 11011110; expected 11011110: match.
+11011111 -> 11111111; expected 11111111: match.
+
+Question input: 10101111.
+Evaluate the formula from its innermost terms:
+ROR1(x) = 11010111
+SHL2(x) = 10111100
+OR(ROR1(x), SHL2(x)) = 11111111
+
+Therefore, the answer is \boxed{11111111}.
+```
+
+The RRCG can solve all the puzzles in the trianing set correctly. We can verify it with the following unit test:
+
+```bash
+source env.sh && python src/nemotron/rrcg/generators.test.py -v
+```
+
+> [!IMPORTANT]
+>
+> A small portion of "Symbol" puzzles do not have an answer because they are underdetermined. For these puzzles, the RRCG will not produce any reasoning content.
+
+#### Supervised Fine-Tuning
+
+With all the generated reasoning content, we can feed them to the Nemotron model and train a LoRA adapter to imporve its reasoning ability to sovlve these types of puzzles.
+
+For each training example, we constructed a supervised record containing:
+
+1. `prompt`: the original puzzle, followed by the instruction to place the final answer inside a `\boxed{}` command.
+2. `completion`: the reasoning content generated by the RRCG, followed by the verified final answer in the required format.
+
+Each record had the following form:
+
+```
+User:
+<original puzzle>
+
+Please put your final answer inside `\\boxed{}`.
+For example: `\\boxed{your answer}`
+
+Assistant reasoning:
+<RRCG-generated reasoning content>
+
+Assistant final response:
+Therefore, the answer is \boxed{<answer>}.
+```
+
+Let $x$ denote the formatted prompt and let $y = (y_1, y_2, \ldots, y_T)$ denote the target completion containing both the reasoning trace and final answer. SFT minimizes the negative log-likelihood of the target completion:
+
+$$
+-\sum_{t=1}^{T} \log p_{\theta_0, \phi} \left( y_t \mid x, y_{<t} \right)
+$$
+
+where $\theta_0$ represents the frozen parameters of the original Nemotron model and $\phi$ represents the trainable LoRA parameters. The prompt tokens were excluded from the loss so that training focused on predicting the assistant's reasoning and answer rather than reproducing the puzzle itself.
+
+We trained only the LoRA parameters and saved the resulting adapter rather than producing a complete copy of the foundation model.
+
+The resulting LoRA adapter achieved a score of only 0.81, which was lower than expected and insufficient to compete for a medal in this challenge. Therefore, we plan to explore other methods, such as on-policy distillation and synthetic data generation, to further improve the model’s performance.
+
+#### The 0.86 Adapter
+
+We were not the only team to come up with the RRCG approach. In fact, many other teams used similar approaches and achieved higher scores, although they referred to the approach by different names. By the midpoint cutoff date (April 9, 2026), some teams had achieved a score of 0.86 and released their adapter (hereafter referred to as the "0.86 adapter") on Kaggle. Competitors could then download the adapter, re-upload it, and achieve the same score.
+
+Because the LoRA adapter produced using our RRCG approach did not achieve a score of 0.86, in the following experiments, we continued improving our adapter based on the 0.86 adapter.
 
 ### Self-Distillation
 
 Self-distillation is a type of knowledge distillation in which the teacher and the student are the same model. Some recent research shows that iterative self-distillation can improve a model's reasoning ability [[1], [2]]. However, research also shows that self-distillation can shorten responses while degrading performance on mathematical
 reasoning \[[3]\].
 
-We attempted to improve the accuracy of the Nemotron model on top of the RBRG adapter. We created an [automation script](experiments/self-distillation/main.py) that implements self-distillation. It performs the following steps in sequence:
+We attempted to improve the accuracy of the Nemotron model on top of the RRCG adapter. We created an [automation script](experiments/self-distillation/main.py) that implements self-distillation. It performs the following steps in sequence:
 
 1. Parse the input arguments and build a configuration object.
 2. Download the Nemotron model from Kaggle if it doesn't already exist.
-3. Download the [RBRG adapter][0.86-adapter] from Kaggle if it doesn't already exist.
+3. Download the [RRCG adapter][0.86-adapter] from Kaggle if it doesn't already exist.
 4. Load the training dataset into memory.
-5. Create a vLLM instance with the RBRG LoRA adapter.
+5. Create a vLLM instance with the RRCG LoRA adapter.
 6. Iterate over the prompts in the training set and generate rollouts (LLM completions) for each prompt. More specifically, we append the following instruction to each prompt:
    ```
    Please put your final answer inside `\boxed{}`. For example: `\boxed{your answer}`
@@ -356,16 +580,47 @@ On-policy distillation (OPD) is knowledge distillation in which the training exa
 
 Theoretically speaking, the self-distillation mentioned above is a special case of OPD in which the student and the teacher are the same model. In this experiment, we use ChatGPT 5 (Pro thinking) as the teacher and have it provide corrected trajectories for puzzles that the Nemotron model cannot solve.
 
-In this experiment, we collected 10 prompts that the Nemotron model (with the RBRG adapter) failed to solve and stored them in a CSV file. We then had ChatGPT 5 read each original completion, keep the correct parts, revise the incorrect parts, and generate a corrected trajectory, which was then used to fine-tune the Nemotron model. The correct trajectories are saved in [data_public/processed/correct_trajectories.csv](data_public/processed/correct_trajectories.csv).
+In this experiment, we collected 10 prompts that the Nemotron model (with the RRCG adapter) failed to solve and stored them in a CSV file. We then had ChatGPT 5 read each original completion, keep the correct parts, revise the incorrect parts, and generate a corrected trajectory, which was then used to fine-tune the Nemotron model. The correct trajectories are saved in [data_public/processed/correct_trajectories.csv](data_public/processed/correct_trajectories.csv).
 
 Unfortunately, although the trajectories provided by the teacher model arrived at correct answers, they didn't improve the accuracy of the Nemotron model. This may be due to an insufficient number of training samples.
 
+## CLI Tool and Tests in This Project
+
+To use the CLI tool or run the test cases in this project, you must first install Python 3.12.11 or later and Poetry 2.4.1 or later. The project supports only Linux and macOS.
+
+First, run the following command from the project’s root directory:
+
+```bash
+# Install dependencies
+poetry install --no-root
+
+# Set up the environment; must be executed in every shell session
+source env.sh
+```
+
+Then, run the following command to view all available commands:
+
+```bash
+nemotron --help
+```
+
+The following command runs the test case for RRCG:
+
+```bash
+source env.sh && python src/nemotron/rrcg/generators.test.py -v
+```
+
 ## What We Learned
 
-[reserved]
+We’ve learned a lot from this project. Almost all of the highest-scoring teams combined synthetic data generation, rule-based solvers with deterministic reasoning generation (similar to our RRCG), and SFT. The main difference was that they generated more synthetic data, including puzzles of similar types, and built better reasoning generators.
+
+While running our self-distillation script on a GPU server managed by Slurm, we found that it was important to use compatible versions of Python, CUDA, vLLM, and other environment dependencies. If the versions were incompatible or the environment was misconfigured, the script would not run. Because none of the three of us had much experience with AI infrastructure, we spent a significant amount of time debugging issues on the cloud GPU server.
+
+To improve a mid-sized large language model’s ability to reason through specific types of problems, on-policy distillation, especially self-distillation, may not be the best approach. Our three subsequent experiments did not further improve the adapter’s score of 0.86. For problems that can be solved step by step, the aforementioned RRCG may still be the most effective approach currently available. However, improving the quality of the generated reasoning content remains a highly complex challenge.
 
 <!-- TO DOCUMENT WRITERS: Please keep these references at the end of the document. -->
 
+[nemotron-model]: https://huggingface.co/nvidia/NVIDIA-Nemotron-3-Nano-30B-A3B-BF16
 [nemotron-challenge-page]: https://www.kaggle.com/competitions/nvidia-nemotron-model-reasoning-challenge
 [vllm]: https://docs.vllm.ai/en/stable/
 [1]: https://arxiv.org/abs/2601.18734
@@ -374,3 +629,6 @@ Unfortunately, although the trajectories provided by the teacher model arrived a
 [0.86-adapter]: https://www.kaggle.com/datasets/leegongman/0-86-adapter
 [4]: https://arxiv.org/abs/2503.14476
 [self-distillation-results]: https://huggingface.co/datasets/FindAJobJMR/rollout-results/
+[mamba-2]: https://arxiv.org/abs/2405.21060
+[MoE]: https://arxiv.org/abs/2401.06066
+[self-attention]: https://arxiv.org/abs/1706.03762
