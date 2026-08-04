@@ -1,5 +1,9 @@
 # NVIDIA Nemotron Model Reasoning Challenge
 
+## Final Result of Our Team
+
+[reserved]
+
 ## Background
 
 The [NVIDIA Nemotron Model Reasoning Challenge][nemotron-challenge-page] is an open online challenge in which competitors are required to fine-tune **Nemotron-3-Nano-30B** (hereafter referred to as the "Nemotron model"), a large language model, so that it can better reason about and answer a series of mathematical problems.
@@ -15,6 +19,44 @@ The vLLM parameters for the evaluation are specified. The significant parameters
 This challenge **started on March 16, 2026**, and **ended on June 22, 2026**.
 
 ### The Nemotron-3-Nano-30B Model
+
+Nemotron-3-Nano-30B-A3B-BF16 is a large language model (LLM) trained from scratch by NVIDIA, and designed as a unified model for both reasoning and non-reasoning tasks. It responds to user queries and tasks by first generating a reasoning trace and then concluding with a final response.
+
+According to the [model description on Hugging Face][nemotron-model]:
+
+> The model employs a hybrid Mixture-of-Experts (MoE) architecture, consisting of 23 Mamba-2 and MoE layers, along with 6 Attention layers. Each MoE layer includes 128 experts plus 1 shared expert, with 6 experts activated per token. The model has 3.5B active parameters and 30B parameters in total.
+
+The Nemotron model is not a conventional stack of 52 Transformer blocks. NVIDIA counts each residual operation (i.e., Mamba, attention, or MoE) as an individual "layer".
+
+The exact arrangement shown in NVIDIA's architecture figure is
+
+```
+MEMEM*EMEMEM*EMEMEM*EMEMEM*EMEMEM*EMEMEMEM*EMEMEMEME
+```
+
+Here, `M` is a [Mamba-2][mamba-2] layer, `E` is a [MoE][moe] layer, and `A` is a grouped-query [self-attention][self-attention].
+
+The model activates six of the 128 routed experts in each MoE layer, along with one shared expert that is always active. As a result, roughly 5.42% of the stored parameters are activated for each token.
+
+| Component                    | Total Stored | Active per token |
+|------------------------------|--------------|------------------|
+| 23 MoE layers                | 29.842B      | 1.844B           |
+| 23 Mamba-2 layers            | 0.891B       | 0.891B           |
+| 6 attention layers           | 0.140B       | 0.140B           |
+| Output vocabulary projection | 0.352B       | 0.352B           |
+| Input token embeddings       | 0.352B       | 0.352B           |
+
+Because the model uses BF16 to store paraemters, each parameter occupies two bytes. The weight-storage is therefore:
+
+$$
+30 \text{B} \times 2 \text{bytes} = 60 \text{GB}.
+$$
+
+And the active parameters is
+
+$$
+3.5 \text{B} \times 2 \text{bytes} = 7 \text{GB}.
+$$
 
 #### Mixture of Experts (MoE)
 
@@ -544,9 +586,37 @@ Unfortunately, although the trajectories provided by the teacher model arrived a
 
 ## CLI Tool and Tests in This Project
 
+To use the CLI tool or run the test cases in this project, you must first install Python 3.12.11 or later and Poetry 2.4.1 or later. The project supports only Linux and macOS.
+
+First, run the following command from the project’s root directory:
+
+```bash
+# Install dependencies
+poetry install --no-root
+
+# Set up the environment; must be executed in every shell session
+source env.sh
+```
+
+Then, run the following command to view all available commands:
+
+```bash
+nemotron --help
+```
+
+The following command runs the test case for RRCG:
+
+```bash
+source env.sh && python src/nemotron/rrcg/generators.test.py -v
+```
+
 ## What We Learned
 
-[reserved]
+We’ve learned a lot from this project. Almost all of the highest-scoring teams combined synthetic data generation, rule-based solvers with deterministic reasoning generation (similar to our RRCG), and SFT. The main difference was that they generated more synthetic data, including puzzles of similar types, and built better reasoning generators.
+
+While running our self-distillation script on a GPU server managed by Slurm, we found that it was important to use compatible versions of Python, CUDA, vLLM, and other environment dependencies. If the versions were incompatible or the environment was misconfigured, the script would not run. Because none of the three of us had much experience with AI infrastructure, we spent a significant amount of time debugging issues on the cloud GPU server.
+
+To improve a mid-sized large language model’s ability to reason through specific types of problems, on-policy distillation, especially self-distillation, may not be the best approach. Our three subsequent experiments did not further improve the adapter’s score of 0.86. For problems that can be solved step by step, the aforementioned RRCG may still be the most effective approach currently available. However, improving the quality of the generated reasoning content remains a highly complex challenge.
 
 <!-- TO DOCUMENT WRITERS: Please keep these references at the end of the document. -->
 
@@ -559,3 +629,6 @@ Unfortunately, although the trajectories provided by the teacher model arrived a
 [0.86-adapter]: https://www.kaggle.com/datasets/leegongman/0-86-adapter
 [4]: https://arxiv.org/abs/2503.14476
 [self-distillation-results]: https://huggingface.co/datasets/FindAJobJMR/rollout-results/
+[mamba-2]: https://arxiv.org/abs/2405.21060
+[MoE]: https://arxiv.org/abs/2401.06066
+[self-attention]: https://arxiv.org/abs/1706.03762
