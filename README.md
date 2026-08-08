@@ -448,7 +448,7 @@ Because the LoRA adapter produced using our RRCG approach did not achieve a scor
 Self-distillation is a type of knowledge distillation in which the teacher and the student are the same model. Some recent research shows that iterative self-distillation can improve a model's reasoning ability [[1], [2]]. However, research also shows that self-distillation can shorten responses while degrading performance on mathematical
 reasoning \[[3]\].
 
-We attempted to improve the accuracy of the Nemotron model on top of the RRCG adapter. We created an [automation script](experiments/self-distillation/main.py) that implements self-distillation. It performs the following steps in sequence:
+We attempted to improve the Nemotron model's accuracy by building on the RRCG adapter. We created an [automation script](experiments/self-distillation/main.py) that implements self-distillation, along with a companion [Bash launcher](experiments/self-distillation/slurm.sh) for running it. The automation script performs the following steps in sequence:
 
 1. Parse the input arguments and build a configuration object.
 2. Download the Nemotron model from Kaggle if it doesn't already exist.
@@ -578,7 +578,9 @@ On-policy distillation (OPD) is knowledge distillation in which the training exa
 - **Scalar reward or preference**: The teacher assigns a scalar representing the reward or preference for each completion. Reinforcement learning is then used to fine-tune the student based on that scalar.
 - **Sequence-level selection**: The student samples N complete rollouts. The teacher scores them and keeps only those above a threshold. The student is then trained with cross-entropy on the survivors, new rollouts are sampled from the updated student, and the process repeats.
 
-Theoretically speaking, the self-distillation mentioned above is a special case of OPD in which the student and the teacher are the same model. In this experiment, we use ChatGPT 5 (Pro thinking) as the teacher and have it provide corrected trajectories for puzzles that the Nemotron model cannot solve.
+Theoretically speaking, the self-distillation mentioned above is a special case of OPD in which the student and the teacher are the same model. In this experiment, we use ChatGPT 5 (Pro thinking) as the teacher and have it provide corrected trajectories for puzzles that the Nemotron model cannot solve. Here is an example prompt we gave to the ChatGPT 5 (Pro thinking).
+
+> The attached CSV file has two columns. For each row, read the prompt, which is a puzzle, and deduce the solution. You should never write or run scripts to solve the puzzle by brute force. You should reason through it. Generate a CSV file with two additional columns: process and answer. The process column should contain the reasoning used to produce the final answer. If you cannot solve a puzzle, leave both columns blank. Ensure that the reasoning process is logically sound and coherent. It should include the complete reasoning process, including all trials you did. Normally, it should not be shorter than 200 words.
 
 In this experiment, we collected 10 prompts that the Nemotron model (with the RRCG adapter) failed to solve and stored them in a CSV file. We then had ChatGPT 5 read each original completion, keep the correct parts, revise the incorrect parts, and generate a corrected trajectory, which was then used to fine-tune the Nemotron model. The correct trajectories are saved in [data_public/processed/correct_trajectories.csv](data_public/processed/correct_trajectories.csv).
 
