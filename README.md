@@ -1,9 +1,5 @@
 # NVIDIA Nemotron Model Reasoning Challenge
 
-## Final Result of Our Team
-
-[reserved]
-
 ## Background
 
 The [NVIDIA Nemotron Model Reasoning Challenge][nemotron-challenge-page] is an open online challenge in which competitors are required to fine-tune **Nemotron-3-Nano-30B** (hereafter referred to as the "Nemotron model"), a large language model, so that it can better reason about and answer a series of mathematical problems.
