@@ -1,6 +1,6 @@
 # NVIDIA Nemotron Model Reasoning Challenge
 
-**In this challenge, our team increased the accuracy from the baseline of 0.30 to 0.840 (best private score).**
+**In this challenge, our team improved the accuracy from a baseline of 0.30 (all-zero LoRA adapter) to 0.840 (the best private score of our team).**
 
 > Team members:
 > 
