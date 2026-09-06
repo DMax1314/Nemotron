@@ -1,5 +1,13 @@
 # NVIDIA Nemotron Model Reasoning Challenge
 
+**In this challenge, our team increased the accuracy from the baseline of 0.30 to 0.840 (best private score).**
+
+> Team members:
+> 
+> - [Zhendong Li](https://github.com/DMax1314)
+> - [Zhuojian Chen](https://github.com/TypingHare)
+> - [Rong Pan](https://github.com/punyung)
+
 ## Background
 
 The [NVIDIA Nemotron Model Reasoning Challenge][nemotron-challenge-page] is an open online challenge in which competitors are required to fine-tune **Nemotron-3-Nano-30B** (hereafter referred to as the "Nemotron model"), a large language model, so that it can better reason about and answer a series of mathematical problems.
@@ -56,7 +64,29 @@ $$
 
 #### Mixture of Experts (MoE)
 
-[reserved: explanation of MoE and how the one in Nemotorn differs]
+The intuition behind MoE is that, when processing each token, some parameters are more relevant and important than others. To reduce computation time, we use only those parameters in the FFN. In MoE, the parameters are divided into blocks, each called an "expert." A router is designed to select the top ($K$) experts from a total of ($N$) experts. The input is passed through these feed-forward experts, and their outputs are combined using a weighted sum.
+
+Suppose an input $x$ is passed into an MoE layer. The router first produces a vector of scores for the experts in the layer:
+
+$$
+r = \operatorname{Router}(h),
+$$
+
+Then, the model selects the top $K$ experts:
+
+$$
+S = \operatorname{TopK}(r, K),
+$$
+
+and computes the weighted sum:
+
+$$
+y = \sum_{i \in S} p_i E_i(h) + E_{\text{shared}}(h).
+$$
+
+Here, $E_{\text{shared}}$ is the shared expert that is used for every token. In the Nemotron model, there are 128 experts and one shared expert in each MoE layer, and $K$ is set to 6.
+
+What makes the Nemotron model distinct from conventional Transformer MoE models is that it uses a hybrid Mamba-Transformer-MoE architecture, as stated in the previous section. The reason for using this architecture is that self-attention becomes increasingly expensive as the context length grows. During autoregressive generation, Transformer attention also maintains an expanding KV cache. Mamba-2, by contrast, is a state-space model. Rather than explicitly attending to every previous token, it maintains a compact recurrent state. NVIDIA therefore uses Mamba-2 for most sequence processing while retaining only a small number of attention layers where attention is especially useful.
 
 #### SVD Denoising and Truncation Principle for LoRA Weights
 
