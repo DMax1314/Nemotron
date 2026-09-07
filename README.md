@@ -454,7 +454,7 @@ Therefore, the answer is \boxed{<answer>}.
 Let $x$ denote the formatted prompt and let $y = (y_1, y_2, \ldots, y_T)$ denote the target completion containing both the reasoning trace and final answer. SFT minimizes the negative log-likelihood of the target completion:
 
 $$
--\sum_{t=1}^{T} \log p_{\theta_0,\phi} ( y_t \mid x, y_{<t} )
+-\sum_{t=1}^{T} \log p_{\theta_0,\phi}(y_t \mid x, y_{\lt t})
 $$
 
 where $\theta_0$ represents the frozen parameters of the original Nemotron model and $\phi$ represents the trainable LoRA parameters. The prompt tokens were excluded from the loss so that training focused on predicting the assistant's reasoning and answer rather than reproducing the puzzle itself.
