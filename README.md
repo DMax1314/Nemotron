@@ -69,13 +69,13 @@ The intuition behind MoE is that, when processing each token, some parameters ar
 Suppose an input $x$ is passed into an MoE layer. The router first produces a vector of scores for the experts in the layer:
 
 $$
-r = \operatorname{Router}(h),
+r = \text{Router}(h),
 $$
 
 Then, the model selects the top $K$ experts:
 
 $$
-S = \operatorname{TopK}(r, K),
+S = \text{TopK}(r, K),
 $$
 
 and computes the weighted sum:
@@ -454,7 +454,8 @@ Therefore, the answer is \boxed{<answer>}.
 Let $x$ denote the formatted prompt and let $y = (y_1, y_2, \ldots, y_T)$ denote the target completion containing both the reasoning trace and final answer. SFT minimizes the negative log-likelihood of the target completion:
 
 $$
--\sum_{t=1}^{T} \log p_{\theta_0, \phi} \left( y_t \mid x, y_{<t} \right)
+-\sum_{t=1}^{T} \log p_{\theta_0,\phi}
+\left(y_t \mid x, y_{<t}\right)
 $$
 
 where $\theta_0$ represents the frozen parameters of the original Nemotron model and $\phi$ represents the trainable LoRA parameters. The prompt tokens were excluded from the loss so that training focused on predicting the assistant's reasoning and answer rather than reproducing the puzzle itself.
